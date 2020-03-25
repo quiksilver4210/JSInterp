@@ -7,3 +7,5 @@
 !/generated/JavaScriptBaseParser.h
 !/generated/JavaScriptBaseLexer.cpp
 !/generated/JavaScriptBaseParser.cpp
+!/generated/JavaScriptParserBaseVisitor.h
+!/generated/JavaScriptParserBaseVisitor.cpp
