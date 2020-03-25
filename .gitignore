@@ -1,0 +1,9 @@
+/cmake-build-debug/
+/generated/**
+/gen/
+/.idea/
+
+!/generated/JavaScriptBaseLexer.h
+!/generated/JavaScriptBaseParser.h
+!/generated/JavaScriptBaseLexer.cpp
+!/generated/JavaScriptBaseParser.cpp
