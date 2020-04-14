@@ -5,7 +5,7 @@
 #ifndef JSINTERP_ASTNODES_H
 #define JSINTERP_ASTNODES_H
 
-#include "BaseAst.h"
+#include "AstBase.h"
 class AstVisitor;
 
 class AstNode {

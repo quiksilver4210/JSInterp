@@ -19,6 +19,56 @@ class JavaScriptParserBaseVisitor : public JavaScriptParserVisitor {
   std::stack<AstNode *> unprocessed;
   std::vector<AstNode *> astTree;
 
+  antlrcpp::Any visitYieldStatement(JavaScriptParser::YieldStatementContext *ctx) override;
+  antlrcpp::Any visitWithStatement(JavaScriptParser::WithStatementContext *ctx) override;
+  antlrcpp::Any visitSwitchStatement(JavaScriptParser::SwitchStatementContext *ctx) override;
+  antlrcpp::Any visitCaseBlock(JavaScriptParser::CaseBlockContext *ctx) override;
+  antlrcpp::Any visitCaseClauses(JavaScriptParser::CaseClausesContext *ctx) override;
+  antlrcpp::Any visitCaseClause(JavaScriptParser::CaseClauseContext *ctx) override;
+  antlrcpp::Any visitDefaultClause(JavaScriptParser::DefaultClauseContext *ctx) override;
+  antlrcpp::Any visitClassDeclaration(JavaScriptParser::ClassDeclarationContext *ctx) override;
+  antlrcpp::Any visitClassTail(JavaScriptParser::ClassTailContext *ctx) override;
+  antlrcpp::Any visitClassElement(JavaScriptParser::ClassElementContext *ctx) override;
+  antlrcpp::Any visitMethodDefinition(JavaScriptParser::MethodDefinitionContext *ctx) override;
+  antlrcpp::Any visitFormalParameterList(JavaScriptParser::FormalParameterListContext *ctx) override;
+  antlrcpp::Any visitFormalParameterArg(JavaScriptParser::FormalParameterArgContext *ctx) override;
+  antlrcpp::Any visitLastFormalParameterArg(JavaScriptParser::LastFormalParameterArgContext *ctx) override;
+  antlrcpp::Any visitForStatement(JavaScriptParser::ForStatementContext *ctx) override;
+  antlrcpp::Any visitForInStatement(JavaScriptParser::ForInStatementContext *ctx) override;
+  antlrcpp::Any visitForOfStatement(JavaScriptParser::ForOfStatementContext *ctx) override;
+  antlrcpp::Any visitDoStatement(JavaScriptParser::DoStatementContext *ctx) override;
+  antlrcpp::Any visitThrowStatement(JavaScriptParser::ThrowStatementContext *ctx) override;
+  antlrcpp::Any visitTryStatement(JavaScriptParser::TryStatementContext *ctx) override;
+  antlrcpp::Any visitCatchProduction(JavaScriptParser::CatchProductionContext *ctx) override;
+  antlrcpp::Any visitFinallyProduction(JavaScriptParser::FinallyProductionContext *ctx) override;
+  antlrcpp::Any visitDebuggerStatement(JavaScriptParser::DebuggerStatementContext *ctx) override;
+  antlrcpp::Any visitPreIncrementExpression(JavaScriptParser::PreIncrementExpressionContext *ctx) override;
+  antlrcpp::Any visitPostIncrementExpression(JavaScriptParser::PostIncrementExpressionContext *ctx) override;
+  antlrcpp::Any visitPreDecreaseExpression(JavaScriptParser::PreDecreaseExpressionContext *ctx) override;
+  antlrcpp::Any visitPostDecreaseExpression(JavaScriptParser::PostDecreaseExpressionContext *ctx) override;
+  antlrcpp::Any visitYieldExpression(JavaScriptParser::YieldExpressionContext *ctx) override;
+  antlrcpp::Any visitImportStatement(JavaScriptParser::ImportStatementContext *ctx) override;
+  antlrcpp::Any visitImportFromBlock(JavaScriptParser::ImportFromBlockContext *ctx) override;
+  antlrcpp::Any visitModuleItems(JavaScriptParser::ModuleItemsContext *ctx) override;
+  antlrcpp::Any visitImportDefault(JavaScriptParser::ImportDefaultContext *ctx) override;
+  antlrcpp::Any visitImportNamespace(JavaScriptParser::ImportNamespaceContext *ctx) override;
+  antlrcpp::Any visitImportFrom(JavaScriptParser::ImportFromContext *ctx) override;
+  antlrcpp::Any visitAliasName(JavaScriptParser::AliasNameContext *ctx) override;
+  antlrcpp::Any visitExportDeclaration(JavaScriptParser::ExportDeclarationContext *ctx) override;
+  antlrcpp::Any visitExportDefaultDeclaration(JavaScriptParser::ExportDefaultDeclarationContext *ctx) override;
+  antlrcpp::Any visitExportFromBlock(JavaScriptParser::ExportFromBlockContext *ctx) override;
+  antlrcpp::Any visitAnoymousFunctionDecl(JavaScriptParser::AnoymousFunctionDeclContext *ctx) override;
+  antlrcpp::Any visitArrowFunction(JavaScriptParser::ArrowFunctionContext *ctx) override;
+  antlrcpp::Any visitArrowFunctionParameters(JavaScriptParser::ArrowFunctionParametersContext *ctx) override;
+  antlrcpp::Any visitArrowFunctionBody(JavaScriptParser::ArrowFunctionBodyContext *ctx) override;
+  antlrcpp::Any visitCoalesceExpression(JavaScriptParser::CoalesceExpressionContext *ctx) override;
+  antlrcpp::Any visitAwaitExpression(JavaScriptParser::AwaitExpressionContext *ctx) override;
+  antlrcpp::Any visitTernaryExpression(JavaScriptParser::TernaryExpressionContext *ctx) override;
+  antlrcpp::Any visitVoidExpression(JavaScriptParser::VoidExpressionContext *ctx) override;
+  antlrcpp::Any visitPropertyGetter(JavaScriptParser::PropertyGetterContext *ctx) override;
+  antlrcpp::Any visitPropertySetter(JavaScriptParser::PropertySetterContext *ctx) override;
+  antlrcpp::Any visitLabelledStatement(JavaScriptParser::LabelledStatementContext *ctx) override;
+
   antlrcpp::Any visitProgram(JavaScriptParser::ProgramContext *ctx) override;
 
   antlrcpp::Any visitSourceElement(JavaScriptParser::SourceElementContext *ctx) override {
@@ -35,66 +85,6 @@ class JavaScriptParserBaseVisitor : public JavaScriptParserVisitor {
   antlrcpp::Any visitBlock(JavaScriptParser::BlockContext *ctx) override;
 
   antlrcpp::Any visitStatementList(JavaScriptParser::StatementListContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitImportStatement(JavaScriptParser::ImportStatementContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitImportFromBlock(JavaScriptParser::ImportFromBlockContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitModuleItems(JavaScriptParser::ModuleItemsContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitImportDefault(JavaScriptParser::ImportDefaultContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitImportNamespace(JavaScriptParser::ImportNamespaceContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitImportFrom(JavaScriptParser::ImportFromContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitAliasName(JavaScriptParser::AliasNameContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitExportDeclaration(JavaScriptParser::ExportDeclarationContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitExportDefaultDeclaration(JavaScriptParser::ExportDefaultDeclarationContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitExportFromBlock(JavaScriptParser::ExportFromBlockContext *ctx) override {
     auto children = visitChildren(ctx);
 
     return children.as<unsigned int>();
@@ -133,31 +123,7 @@ class JavaScriptParserBaseVisitor : public JavaScriptParserVisitor {
     return children.as<unsigned int>();
   }
 
-  antlrcpp::Any visitDoStatement(JavaScriptParser::DoStatementContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
   antlrcpp::Any visitWhileStatement(JavaScriptParser::WhileStatementContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitForStatement(JavaScriptParser::ForStatementContext *ctx) override {
-    auto children = visitChildren(ctx);
-    std::cerr << "TYT" << std::endl;
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitForInStatement(JavaScriptParser::ForInStatementContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitForOfStatement(JavaScriptParser::ForOfStatementContext *ctx) override {
     auto children = visitChildren(ctx);
 
     return children.as<unsigned int>();
@@ -186,37 +152,6 @@ class JavaScriptParserBaseVisitor : public JavaScriptParserVisitor {
 
     return children.as<unsigned int>();
   }
-
-  antlrcpp::Any visitYieldStatement(JavaScriptParser::YieldStatementContext *ctx) override;
-  antlrcpp::Any visitWithStatement(JavaScriptParser::WithStatementContext *ctx) override;
-  antlrcpp::Any visitSwitchStatement(JavaScriptParser::SwitchStatementContext *ctx) override;
-  antlrcpp::Any visitCaseBlock(JavaScriptParser::CaseBlockContext *ctx) override;
-  antlrcpp::Any visitCaseClauses(JavaScriptParser::CaseClausesContext *ctx) override;
-  antlrcpp::Any visitCaseClause(JavaScriptParser::CaseClauseContext *ctx) override;
-  antlrcpp::Any visitDefaultClause(JavaScriptParser::DefaultClauseContext *ctx) override;
-  antlrcpp::Any visitClassDeclaration(JavaScriptParser::ClassDeclarationContext *ctx) override;
-  antlrcpp::Any visitClassTail(JavaScriptParser::ClassTailContext *ctx) override;
-  antlrcpp::Any visitClassElement(JavaScriptParser::ClassElementContext *ctx) override;
-  antlrcpp::Any visitMethodDefinition(JavaScriptParser::MethodDefinitionContext *ctx) override;
-  antlrcpp::Any visitFormalParameterList(JavaScriptParser::FormalParameterListContext *ctx) override;
-  antlrcpp::Any visitFormalParameterArg(JavaScriptParser::FormalParameterArgContext *ctx) override;
-  antlrcpp::Any visitLastFormalParameterArg(JavaScriptParser::LastFormalParameterArgContext *ctx) override;
-
-  antlrcpp::Any visitLabelledStatement(JavaScriptParser::LabelledStatementContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitThrowStatement(JavaScriptParser::ThrowStatementContext *ctx) override;
-
-  antlrcpp::Any visitTryStatement(JavaScriptParser::TryStatementContext *ctx) override;
-
-  antlrcpp::Any visitCatchProduction(JavaScriptParser::CatchProductionContext *ctx) override;
-
-  antlrcpp::Any visitFinallyProduction(JavaScriptParser::FinallyProductionContext *ctx) override;
-
-  antlrcpp::Any visitDebuggerStatement(JavaScriptParser::DebuggerStatementContext *ctx) override;
 
   antlrcpp::Any visitFunctionDeclaration(JavaScriptParser::FunctionDeclarationContext *ctx) override {
     auto children = visitChildren(ctx);
@@ -279,18 +214,6 @@ class JavaScriptParserBaseVisitor : public JavaScriptParserVisitor {
     return children.as<unsigned int>();
   }
 
-  antlrcpp::Any visitPropertyGetter(JavaScriptParser::PropertyGetterContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitPropertySetter(JavaScriptParser::PropertySetterContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
   antlrcpp::Any visitPropertyShorthand(JavaScriptParser::PropertyShorthandContext *ctx) override {
     auto children = visitChildren(ctx);
 
@@ -327,12 +250,6 @@ class JavaScriptParserBaseVisitor : public JavaScriptParserVisitor {
     return children.as<unsigned int>();
   }
 
-  antlrcpp::Any visitTernaryExpression(JavaScriptParser::TernaryExpressionContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
   antlrcpp::Any visitLogicalAndExpression(JavaScriptParser::LogicalAndExpressionContext *ctx) override {
     auto children = visitChildren(ctx);
 
@@ -340,12 +257,6 @@ class JavaScriptParserBaseVisitor : public JavaScriptParserVisitor {
   }
 
   antlrcpp::Any visitPowerExpression(JavaScriptParser::PowerExpressionContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitPreIncrementExpression(JavaScriptParser::PreIncrementExpressionContext *ctx) override {
     auto children = visitChildren(ctx);
 
     return children.as<unsigned int>();
@@ -381,19 +292,7 @@ class JavaScriptParserBaseVisitor : public JavaScriptParserVisitor {
     return children.as<unsigned int>();
   }
 
-  antlrcpp::Any visitPreDecreaseExpression(JavaScriptParser::PreDecreaseExpressionContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
   antlrcpp::Any visitArgumentsExpression(JavaScriptParser::ArgumentsExpressionContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitAwaitExpression(JavaScriptParser::AwaitExpressionContext *ctx) override {
     auto children = visitChildren(ctx);
 
     return children.as<unsigned int>();
@@ -418,12 +317,6 @@ class JavaScriptParserBaseVisitor : public JavaScriptParserVisitor {
   }
 
   antlrcpp::Any visitAssignmentExpression(JavaScriptParser::AssignmentExpressionContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitPostDecreaseExpression(JavaScriptParser::PostDecreaseExpressionContext *ctx) override {
     auto children = visitChildren(ctx);
 
     return children.as<unsigned int>();
@@ -507,18 +400,6 @@ class JavaScriptParserBaseVisitor : public JavaScriptParserVisitor {
     return children.as<unsigned int>();
   }
 
-  antlrcpp::Any visitPostIncrementExpression(JavaScriptParser::PostIncrementExpressionContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitYieldExpression(JavaScriptParser::YieldExpressionContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
   antlrcpp::Any visitBitNotExpression(JavaScriptParser::BitNotExpressionContext *ctx) override {
     auto children = visitChildren(ctx);
 
@@ -582,18 +463,6 @@ class JavaScriptParserBaseVisitor : public JavaScriptParserVisitor {
     return children.as<unsigned int>();
   }
 
-  antlrcpp::Any visitVoidExpression(JavaScriptParser::VoidExpressionContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitCoalesceExpression(JavaScriptParser::CoalesceExpressionContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
   antlrcpp::Any visitAssignable(JavaScriptParser::AssignableContext *ctx) override {
     //    visitChildren(ctx);
     //    auto ident = new IdentifierNode();
@@ -606,30 +475,6 @@ class JavaScriptParserBaseVisitor : public JavaScriptParserVisitor {
   }
 
   antlrcpp::Any visitFunctionDecl(JavaScriptParser::FunctionDeclContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitAnoymousFunctionDecl(JavaScriptParser::AnoymousFunctionDeclContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitArrowFunction(JavaScriptParser::ArrowFunctionContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitArrowFunctionParameters(JavaScriptParser::ArrowFunctionParametersContext *ctx) override {
-    auto children = visitChildren(ctx);
-
-    return children.as<unsigned int>();
-  }
-
-  antlrcpp::Any visitArrowFunctionBody(JavaScriptParser::ArrowFunctionBodyContext *ctx) override {
     auto children = visitChildren(ctx);
 
     return children.as<unsigned int>();

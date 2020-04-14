@@ -48,9 +48,6 @@ class ExpressionNode : public StatementNode {
   ExpressionNode() {
     type = ExpressionType;
   }
-  void accept(AstVisitor* visitor) override {
-    //    return visitor->visit((ExpressionNode*)this);
-  }
 };
 
 class VarDeclarationNode : public StatementNode {
@@ -133,6 +130,21 @@ class BooleanLiteral : public ExpressionNode {
   std::string value;
   void accept(AstVisitor* visitor) override {
     return visitor->visit((BooleanLiteral*)this);
+  }
+};
+class FunctionNode : public AstNode {
+ public:
+  IdentifierNode* id;
+  std::vector<IdentifierNode*> params;
+  FunctionBodyNode* body;
+  FunctionNode() {
+    type = NodeType::FunctionType;
+  }
+};
+class FunctionBody : public BlockStatementNode {
+ public:
+  FunctionBody() {
+    type = FunctionBodyType;
   }
 };
 

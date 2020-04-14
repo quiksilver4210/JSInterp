@@ -6,62 +6,158 @@
 #include "JavaScriptParserBaseVisitor.h"
 #define setPos(node) node->setPosition(ctx->start->getStartIndex(), ctx->stop->getStopIndex())
 
-antlrcpp::Any JavaScriptParserBaseVisitor::visitSwitchStatement(JavaScriptParser::SwitchStatementContext *ctx) {
+antlrcpp::Any JavaScriptParserBaseVisitor::visitSwitchStatement(JavaScriptParser::SwitchStatementContext *) {
   throw std::logic_error("Not realised");
 }
-antlrcpp::Any JavaScriptParserBaseVisitor::visitYieldStatement(JavaScriptParser::YieldStatementContext *ctx) {
+antlrcpp::Any JavaScriptParserBaseVisitor::visitYieldStatement(JavaScriptParser::YieldStatementContext *) {
   throw std::logic_error("Not realised");
 }
-antlrcpp::Any JavaScriptParserBaseVisitor::visitWithStatement(JavaScriptParser::WithStatementContext *ctx) {
+antlrcpp::Any JavaScriptParserBaseVisitor::visitWithStatement(JavaScriptParser::WithStatementContext *) {
   throw std::logic_error("Not realised");
 }
-antlrcpp::Any JavaScriptParserBaseVisitor::visitCaseBlock(JavaScriptParser::CaseBlockContext *ctx) {
+antlrcpp::Any JavaScriptParserBaseVisitor::visitCaseBlock(JavaScriptParser::CaseBlockContext *) {
   throw std::logic_error("Not realised");
 }
-antlrcpp::Any JavaScriptParserBaseVisitor::visitCaseClauses(JavaScriptParser::CaseClausesContext *ctx) {
+antlrcpp::Any JavaScriptParserBaseVisitor::visitCaseClauses(JavaScriptParser::CaseClausesContext *) {
   throw std::logic_error("Not realised");
 }
-antlrcpp::Any JavaScriptParserBaseVisitor::visitCaseClause(JavaScriptParser::CaseClauseContext *ctx) {
+antlrcpp::Any JavaScriptParserBaseVisitor::visitCaseClause(JavaScriptParser::CaseClauseContext *) {
   throw std::logic_error("Not realised");
 }
-antlrcpp::Any JavaScriptParserBaseVisitor::visitDefaultClause(JavaScriptParser::DefaultClauseContext *ctx) {
+antlrcpp::Any JavaScriptParserBaseVisitor::visitDefaultClause(JavaScriptParser::DefaultClauseContext *) {
   throw std::logic_error("Not realised");
 }
-antlrcpp::Any JavaScriptParserBaseVisitor::visitThrowStatement(JavaScriptParser::ThrowStatementContext *ctx) {
+antlrcpp::Any JavaScriptParserBaseVisitor::visitThrowStatement(JavaScriptParser::ThrowStatementContext *) {
   throw std::logic_error("Not realised");
 }
-antlrcpp::Any JavaScriptParserBaseVisitor::visitTryStatement(JavaScriptParser::TryStatementContext *ctx) {
+antlrcpp::Any JavaScriptParserBaseVisitor::visitTryStatement(JavaScriptParser::TryStatementContext *) {
   throw std::logic_error("Not realised");
 }
-antlrcpp::Any JavaScriptParserBaseVisitor::visitCatchProduction(JavaScriptParser::CatchProductionContext *ctx) {
+antlrcpp::Any JavaScriptParserBaseVisitor::visitCatchProduction(JavaScriptParser::CatchProductionContext *) {
   throw std::logic_error("Not realised");
 }
-antlrcpp::Any JavaScriptParserBaseVisitor::visitFinallyProduction(JavaScriptParser::FinallyProductionContext *ctx) {
+antlrcpp::Any JavaScriptParserBaseVisitor::visitFinallyProduction(JavaScriptParser::FinallyProductionContext *) {
   throw std::logic_error("Not realised");
 }
-antlrcpp::Any JavaScriptParserBaseVisitor::visitDebuggerStatement(JavaScriptParser::DebuggerStatementContext *ctx) {
+antlrcpp::Any JavaScriptParserBaseVisitor::visitDebuggerStatement(JavaScriptParser::DebuggerStatementContext *) {
   throw std::logic_error("Not realised");
 }
-antlrcpp::Any JavaScriptParserBaseVisitor::visitClassDeclaration(JavaScriptParser::ClassDeclarationContext *ctx) {
+antlrcpp::Any JavaScriptParserBaseVisitor::visitClassDeclaration(JavaScriptParser::ClassDeclarationContext *) {
   throw std::logic_error("Not realised");
 }
-antlrcpp::Any JavaScriptParserBaseVisitor::visitClassTail(JavaScriptParser::ClassTailContext *ctx) {
+antlrcpp::Any JavaScriptParserBaseVisitor::visitClassTail(JavaScriptParser::ClassTailContext *) {
   throw std::logic_error("Not realised");
 }
-antlrcpp::Any JavaScriptParserBaseVisitor::visitClassElement(JavaScriptParser::ClassElementContext *ctx) {
+antlrcpp::Any JavaScriptParserBaseVisitor::visitClassElement(JavaScriptParser::ClassElementContext *) {
   throw std::logic_error("Not realised");
 }
-antlrcpp::Any JavaScriptParserBaseVisitor::visitMethodDefinition(JavaScriptParser::MethodDefinitionContext *ctx) {
+antlrcpp::Any JavaScriptParserBaseVisitor::visitMethodDefinition(JavaScriptParser::MethodDefinitionContext *) {
   throw std::logic_error("Not realised");
 }
-antlrcpp::Any JavaScriptParserBaseVisitor::visitFormalParameterList(JavaScriptParser::FormalParameterListContext *ctx) {
+antlrcpp::Any JavaScriptParserBaseVisitor::visitFormalParameterList(JavaScriptParser::FormalParameterListContext *) {
   throw std::logic_error("Not realised");
 }
-antlrcpp::Any JavaScriptParserBaseVisitor::visitFormalParameterArg(JavaScriptParser::FormalParameterArgContext *ctx) {
+antlrcpp::Any JavaScriptParserBaseVisitor::visitFormalParameterArg(JavaScriptParser::FormalParameterArgContext *) {
   throw std::logic_error("Not realised");
 }
 antlrcpp::Any
-JavaScriptParserBaseVisitor::visitLastFormalParameterArg(JavaScriptParser::LastFormalParameterArgContext *ctx) {
+JavaScriptParserBaseVisitor::visitLastFormalParameterArg(JavaScriptParser::LastFormalParameterArgContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitForStatement(JavaScriptParser::ForStatementContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitForInStatement(JavaScriptParser::ForInStatementContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitForOfStatement(JavaScriptParser::ForOfStatementContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitDoStatement(JavaScriptParser::DoStatementContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitTernaryExpression(JavaScriptParser::TernaryExpressionContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any
+JavaScriptParserBaseVisitor::visitPreIncrementExpression(JavaScriptParser::PreIncrementExpressionContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any
+JavaScriptParserBaseVisitor::visitPreDecreaseExpression(JavaScriptParser::PreDecreaseExpressionContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any
+JavaScriptParserBaseVisitor::visitPostDecreaseExpression(JavaScriptParser::PostDecreaseExpressionContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any
+JavaScriptParserBaseVisitor::visitPostIncrementExpression(JavaScriptParser::PostIncrementExpressionContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitYieldExpression(JavaScriptParser::YieldExpressionContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitImportStatement(JavaScriptParser::ImportStatementContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitImportFromBlock(JavaScriptParser::ImportFromBlockContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitModuleItems(JavaScriptParser::ModuleItemsContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitImportDefault(JavaScriptParser::ImportDefaultContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitImportNamespace(JavaScriptParser::ImportNamespaceContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitImportFrom(JavaScriptParser::ImportFromContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitAliasName(JavaScriptParser::AliasNameContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitExportDeclaration(JavaScriptParser::ExportDeclarationContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any
+JavaScriptParserBaseVisitor::visitExportDefaultDeclaration(JavaScriptParser::ExportDefaultDeclarationContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitExportFromBlock(JavaScriptParser::ExportFromBlockContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitAnoymousFunctionDecl(JavaScriptParser::AnoymousFunctionDeclContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitArrowFunction(JavaScriptParser::ArrowFunctionContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any
+JavaScriptParserBaseVisitor::visitArrowFunctionParameters(JavaScriptParser::ArrowFunctionParametersContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitArrowFunctionBody(JavaScriptParser::ArrowFunctionBodyContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitCoalesceExpression(JavaScriptParser::CoalesceExpressionContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitAwaitExpression(JavaScriptParser::AwaitExpressionContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitVoidExpression(JavaScriptParser::VoidExpressionContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitPropertyGetter(JavaScriptParser::PropertyGetterContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitPropertySetter(JavaScriptParser::PropertySetterContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitLabelledStatement(JavaScriptParser::LabelledStatementContext *) {
   throw std::logic_error("Not realised");
 }
 
@@ -126,6 +222,7 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitLiteralExpression(JavaScriptPars
   if (ctx->literal()->numericLiteral() != nullptr) {
     auto lit = new NumericLiteral();
     lit->value = ctx->start->getText();
+
     setPos(lit);
     unprocessed.push(lit);
   }

@@ -4,8 +4,9 @@
 
 #include "AstVisitor.h"
 #include <iomanip>
+#include "AstNodes.cpp"
 #include "AstNodes.h"
-#include "Utils.cpp"
+typedef Constants C;
 std::string AstVisitor::getTextTree() {
   return tree.str();
 }
@@ -14,7 +15,7 @@ void AstVisitor::printNodeName(NodeType type) {
   printLine();
   lastOffset += 4;
   offset.emplace_back(lastOffset);
-  tree << "+ " << nodeName[type] << std::endl;
+  tree << "+ " << C::nodeName[type] << std::endl;
 }
 
 void AstVisitor::printLine() {
