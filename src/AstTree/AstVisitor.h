@@ -9,8 +9,7 @@
 #include <sstream>
 #include <stack>
 #include <vector>
-
-#include "AstNodes.h"
+#include "BaseAst.h"
 
 class AstVisitor {
   std::vector<int> offset;

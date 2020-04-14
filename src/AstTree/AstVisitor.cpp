@@ -4,6 +4,7 @@
 
 #include "AstVisitor.h"
 #include <iomanip>
+#include "AstNodes.h"
 #include "Utils.cpp"
 std::string AstVisitor::getTextTree() {
   return tree.str();
@@ -34,58 +35,7 @@ void AstVisitor::visitNewNode(AstNode* node) {
     return;
   }
   printNodeName(node->type);
-
-  switch (node->type) {
-    case ProgramType:
-      visit((ProgramNode*)node);
-      break;
-    case VarDeclarationType:
-      visit((VarDeclarationNode*)node);
-      break;
-    case VarDeclaratorType:
-      visit((VarDeclaratorNode*)node);
-      break;
-    case IdentifierType:
-      visit((IdentifierNode*)node);
-      break;
-    case StatementType:
-      break;
-    case BlockStatementType:
-      visit((BlockStatementNode*)node);
-      break;
-    case ExpressionType:
-      break;
-    case ArrayExpressionType:
-      break;
-    case FunctionExpressionType:
-      break;
-    case UnaryExpressionType:
-      break;
-    case UpdateExpressionType:
-      break;
-    case BinaryExpressionType:
-      break;
-    case AssignmentExpressionType:
-      break;
-    case LogicalExpressionType:
-      break;
-    case ConditionalExpressionType:
-      break;
-    case CallExpressionType:
-      break;
-    case NullLiteralType:
-      visit((NullLiteral*)node);
-      break;
-    case StringLiteralType:
-      visit((StringLiteral*)node);
-      break;
-    case NumericLiteralType:
-      visit((NumericLiteral*)node);
-      break;
-    case BooleanLiteralType:
-      visit((BooleanLiteral*)node);
-      break;
-  }
+  node->accept(this);
   lastOffset -= 4;
   offset.pop_back();
 }

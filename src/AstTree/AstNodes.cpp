@@ -15,6 +15,9 @@ class IdentifierNode : public AstNode {
   IdentifierNode() {
     type = IdentifierType;
   }
+  void accept(AstVisitor* visitor) override {
+    return visitor->visit((IdentifierNode*)this);
+  }
 };
 
 class ProgramNode : public AstNode {
@@ -22,6 +25,9 @@ class ProgramNode : public AstNode {
   std::vector<StatementNode*> statementNodes;
   ProgramNode() {
     type = ProgramType;
+  }
+  void accept(AstVisitor* visitor) override {
+    return visitor->visit((ProgramNode*)this);
   }
 };
 class StatementNode : public AstNode {};
@@ -32,12 +38,18 @@ class BlockStatementNode : public StatementNode {
   BlockStatementNode() {
     type = BlockStatementType;
   }
+  void accept(AstVisitor* visitor) override {
+    return visitor->visit((BlockStatementNode*)this);
+  }
 };
 
 class ExpressionNode : public StatementNode {
  public:
   ExpressionNode() {
     type = ExpressionType;
+  }
+  void accept(AstVisitor* visitor) override {
+    //    return visitor->visit((ExpressionNode*)this);
   }
 };
 
@@ -48,6 +60,9 @@ class VarDeclarationNode : public StatementNode {
   VarDeclarationNode() {
     type = VarDeclarationType;
   }
+  void accept(AstVisitor* visitor) override {
+    return visitor->visit((VarDeclarationNode*)this);
+  }
 };
 class VarDeclaratorNode : public AstNode {
  public:
@@ -56,6 +71,9 @@ class VarDeclaratorNode : public AstNode {
   }
   IdentifierNode* identifierNode = nullptr;
   ExpressionNode* expressionNode = nullptr;
+  void accept(AstVisitor* visitor) override {
+    return visitor->visit((VarDeclaratorNode*)this);
+  }
 };
 
 class ArrayExpression : public ExpressionNode {
@@ -63,6 +81,9 @@ class ArrayExpression : public ExpressionNode {
   std::vector<ExpressionNode*> elements;
   ArrayExpression() {
     type = ArrayExpressionType;
+  }
+  void accept(AstVisitor* visitor) override {
+    //    return visitor->visit((ArrayExpression*)this);
   }
 };
 
@@ -79,6 +100,9 @@ class NullLiteral : public ExpressionNode {
     type = NullLiteralType;
   }
   std::string value;
+  void accept(AstVisitor* visitor) override {
+    return visitor->visit((NullLiteral*)this);
+  }
 };
 
 class StringLiteral : public ExpressionNode {
@@ -87,6 +111,9 @@ class StringLiteral : public ExpressionNode {
     type = StringLiteralType;
   }
   std::string value;
+  void accept(AstVisitor* visitor) override {
+    return visitor->visit((StringLiteral*)this);
+  }
 };
 class NumericLiteral : public ExpressionNode {
  public:
@@ -94,6 +121,9 @@ class NumericLiteral : public ExpressionNode {
     type = NumericLiteralType;
   }
   std::string value;
+  void accept(AstVisitor* visitor) override {
+    return visitor->visit((NumericLiteral*)this);
+  }
 };
 class BooleanLiteral : public ExpressionNode {
  public:
@@ -101,6 +131,9 @@ class BooleanLiteral : public ExpressionNode {
     type = BooleanLiteralType;
   }
   std::string value;
+  void accept(AstVisitor* visitor) override {
+    return visitor->visit((BooleanLiteral*)this);
+  }
 };
 
 #endif  // JSINTERP_ASTNODES_CPP

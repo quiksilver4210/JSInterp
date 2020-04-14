@@ -5,54 +5,8 @@
 #ifndef JSINTERP_ASTNODES_H
 #define JSINTERP_ASTNODES_H
 
+#include "BaseAst.h"
 class AstVisitor;
-class ProgramNode;
-class BlockStatementNode;
-class StatementNode;
-
-class IdentifierNode;
-class VarDeclarationNode;
-class VarDeclaratorNode;
-class StatementNode;
-
-class ExpressionNode;
-class ArrayExpressionNode;
-class FunctionExpressionNode;
-class UnaryExpressionNode;
-class UpdateExpressionNode;
-class BinaryExpressionNode;
-class AssignmentExpressionNode;
-class LogicalExpressionNode;
-class ConditionalExpressionNode;
-class CallExpressionNode;
-
-class NullLiteral;
-class StringLiteral;
-class NumericLiteral;
-class BooleanLiteral;
-
-enum NodeType {
-  ProgramType,
-  VarDeclarationType,
-  VarDeclaratorType,
-  StatementType,
-  BlockStatementType,
-  IdentifierType,
-  ExpressionType,
-  ArrayExpressionType,
-  FunctionExpressionType,
-  UnaryExpressionType,
-  UpdateExpressionType,
-  BinaryExpressionType,
-  AssignmentExpressionType,
-  LogicalExpressionType,
-  ConditionalExpressionType,
-  CallExpressionType,
-  NullLiteralType,
-  StringLiteralType,
-  NumericLiteralType,
-  BooleanLiteralType
-};
 
 class AstNode {
  public:
@@ -63,6 +17,6 @@ class AstNode {
     start = st;
     stop = sp;
   }
-  //  virtual void accept(AstVisitor* visitor);
+  virtual void accept(AstVisitor* visitor){};
 };
 #endif  // JSINTERP_ASTNODES_H
