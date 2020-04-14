@@ -4,6 +4,6 @@
 /.idea/
 
 
-!/generated/JavaScriptParserBaseVisitor.h
-!/generated/JavaScriptParserBaseVisitor.cpp
+!/src/JavaScriptVisitor/JavaScriptParserBaseVisitor.h
+!/src/JavaScriptVisitor/JavaScriptParserBaseVisitor.cpp
 

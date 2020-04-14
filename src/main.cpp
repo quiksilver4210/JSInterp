@@ -1,10 +1,11 @@
 #include <iostream>
 
-#include "antlr4-runtime.h"
+#include "AstTree/AstNodes.cpp"
+#include "AstTree/AstVisitor.h"
 #include "JavaScriptLexer.h"
 #include "JavaScriptParser.h"
-#include "JavaScriptParserBaseVisitor.h"
-
+#include "JavaScriptVisitor/JavaScriptParserBaseVisitor.h"
+#include "antlr4-runtime.h"
 using namespace antlr4;
 
 int main(int, const char **) {
@@ -17,9 +18,10 @@ int main(int, const char **) {
   JavaScriptParser parser(&tokens);
 
   JavaScriptParserBaseVisitor visitor;
-  auto ctx = parser.block();
-  visitor.visitBlock(ctx);
-  std::cout << ctx->toStringTree(true) << std::endl;
+  auto ctx = parser.program();
+  visitor.visitProgram(ctx);
+  AstVisitor astVisitor(visitor.astTree[visitor.astTree.size() - 1]);
+  std::cout << astVisitor.getTextTree();
 
   return 0;
 }
