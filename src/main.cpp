@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "AstTree/AstNodes.cpp"
-#include "AstTree/AstVisitor.h"
+#include "Ast/AstNodes.cpp"
+#include "Ast/AstVisitor.h"
 #include "JavaScriptLexer.h"
 #include "JavaScriptParser.h"
 #include "JavaScriptVisitor/JavaScriptParserBaseVisitor.h"
@@ -20,7 +20,7 @@ int main(int, const char **) {
   JavaScriptParserBaseVisitor visitor;
   auto ctx = parser.program();
   visitor.visitProgram(ctx);
-  AstVisitor astVisitor(visitor.astTree[visitor.astTree.size() - 1]);
+  AstVisitor astVisitor(visitor.getAstRoot());
   std::cout << astVisitor.getTextTree();
 
   return 0;

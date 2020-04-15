@@ -7,7 +7,6 @@
 
 #include "AstBase.h"
 class AstVisitor;
-
 class AstNode {
  public:
   NodeType type;

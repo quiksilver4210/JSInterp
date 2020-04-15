@@ -37,6 +37,10 @@ class AstVisitor {
   void visit(NumericLiteral* node);
   void visit(BooleanLiteral* node);
   void visit(StringLiteral* node);
+  void visit(FunctionDeclarationNode* node);
+  void visit(FunctionBodyNode* node);
+  void visit(CallExpressionNode* node);
+  void visit(ExpressionStatementNode* node);
 };
 
 #endif  // JSINTERP_ASTVISITOR_H

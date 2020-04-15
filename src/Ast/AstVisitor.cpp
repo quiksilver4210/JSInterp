@@ -83,3 +83,31 @@ void AstVisitor::visit(BlockStatementNode* node) {
     visitNewNode(i);
   }
 }
+void AstVisitor::visit(FunctionDeclarationNode* node) {
+  visitNewNode(node->id);
+  printLine();
+  lastOffset += 4;
+  offset.emplace_back(lastOffset);
+  tree << "+ "
+       << "Params" << std::endl;
+  for (auto i : node->params) {
+    visitNewNode(i);
+  }
+  lastOffset -= 4;
+  offset.pop_back();
+  visitNewNode(node->body);
+}
+void AstVisitor::visit(FunctionBodyNode* node) {
+  for (auto i : node->statementNodes) {
+    visitNewNode(i);
+  }
+}
+void AstVisitor::visit(CallExpressionNode* node) {
+  visitNewNode(node->callee);
+  for (auto i : node->args) {
+    visitNewNode(i);
+  }
+}
+void AstVisitor::visit(ExpressionStatementNode* node) {
+  visitNewNode(node->expression);
+}

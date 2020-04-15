@@ -84,12 +84,18 @@ class ArrayExpression : public ExpressionNode {
   }
 };
 
-// class AssignmentExpressionNode : public ExpressionNode {
-// public:
-//  IdentifierNode* left;
-//  ExpressionNode* right;
-//};
-//
+class AssignmentExpressionNode : public ExpressionNode {
+ public:
+  ExpressionNode* left;
+  ExpressionNode* right;
+  std::string operation;
+  AssignmentExpressionNode() {
+    type = AssignmentExpressionType;
+  }
+  void accept(AstVisitor* visitor) override {
+    //     return visitor->visit(this);
+  }
+};
 
 class NullLiteral : public ExpressionNode {
  public:
@@ -98,7 +104,7 @@ class NullLiteral : public ExpressionNode {
   }
   std::string value;
   void accept(AstVisitor* visitor) override {
-    return visitor->visit((NullLiteral*)this);
+    return visitor->visit(this);
   }
 };
 
@@ -109,7 +115,7 @@ class StringLiteral : public ExpressionNode {
   }
   std::string value;
   void accept(AstVisitor* visitor) override {
-    return visitor->visit((StringLiteral*)this);
+    return visitor->visit(this);
   }
 };
 class NumericLiteral : public ExpressionNode {
@@ -119,7 +125,7 @@ class NumericLiteral : public ExpressionNode {
   }
   std::string value;
   void accept(AstVisitor* visitor) override {
-    return visitor->visit((NumericLiteral*)this);
+    return visitor->visit(this);
   }
 };
 class BooleanLiteral : public ExpressionNode {
@@ -129,23 +135,109 @@ class BooleanLiteral : public ExpressionNode {
   }
   std::string value;
   void accept(AstVisitor* visitor) override {
-    return visitor->visit((BooleanLiteral*)this);
+    return visitor->visit(this);
   }
 };
-class FunctionNode : public AstNode {
+class FunctionDeclarationNode : public AstNode {
  public:
   IdentifierNode* id;
   std::vector<IdentifierNode*> params;
   FunctionBodyNode* body;
-  FunctionNode() {
-    type = NodeType::FunctionType;
+  FunctionDeclarationNode() {
+    type = NodeType::FunctionDeclarationType;
+  }
+  void accept(AstVisitor* visitor) override {
+    return visitor->visit(this);
   }
 };
-class FunctionBody : public BlockStatementNode {
+class FunctionBodyNode : public BlockStatementNode {
  public:
-  FunctionBody() {
+  FunctionBodyNode() {
     type = FunctionBodyType;
+  }
+  void accept(AstVisitor* visitor) override {
+    return visitor->visit(this);
+  }
+};
+class WhileStatementNode : public StatementNode {
+ public:
+  ExpressionNode* cond;
+  StatementNode* body;
+  WhileStatementNode() {
+    type = WhileStatementType;
+  }
+  void accept(AstVisitor* visitor) override {
+    //    return visitor->visit(this);
+  }
+};
+class IfStatementNode : public StatementNode {
+ public:
+  ExpressionNode* cond;
+  StatementNode* cons;
+  StatementNode* alter;
+  IfStatementNode() {
+    type = IfStatementType;
+  }
+  void accept(AstVisitor* visitor) override {
+    //        return visitor->visit(this);
+  }
+};
+class BreakStatementNode : public StatementNode {
+ public:
+  BreakStatementNode() {
+    type = BreakStatementType;
+  }
+  void accept(AstVisitor* visitor) override {
+    //        return visitor->visit(this);
+  }
+};
+class ContinueStatementNode : public StatementNode {
+ public:
+  ContinueStatementNode() {
+    type = ContinueStatementType;
+  }
+  void accept(AstVisitor* visitor) override {
+    //        return visitor->visit(this);
+  }
+};
+class ReturnStatementNode : public StatementNode {
+ public:
+  ExpressionNode* arg;
+  ReturnStatementNode() {
+    type = ReturnStatementType;
+  }
+  void accept(AstVisitor* visitor) override {
+    //        return visitor->visit(this);
   }
 };
 
+class ExpressionStatementNode : public StatementNode {
+ public:
+  ExpressionStatementNode() {
+    type = ExpressionStatementType;
+  }
+  ExpressionNode* expression;
+  void accept(AstVisitor* visitor) override {
+    return visitor->visit(this);
+  }
+};
+
+class CallExpressionNode : public ExpressionNode {
+ public:
+  ExpressionNode* callee;
+  std::vector<ExpressionNode*> args;
+  CallExpressionNode() {
+    type = CallExpressionType;
+  }
+  void accept(AstVisitor* visitor) override {
+    return visitor->visit(this);
+  }
+};
+class ExpressionSequenceNode : public ExpressionNode {
+ public:
+  std::vector<ExpressionNode*> expressions;
+  ExpressionSequenceNode() {
+    type = ExpressionSequenceType;
+  }
+};
 #endif  // JSINTERP_ASTNODES_CPP

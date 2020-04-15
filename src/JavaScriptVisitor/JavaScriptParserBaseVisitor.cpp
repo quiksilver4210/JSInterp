@@ -1,9 +1,7 @@
 
+#include "JavaScriptParserBaseVisitor.h"
 #include "JavaScriptBaseParser.h"
 
-// Generated from JavaScriptParser.g4 by ANTLR 4.8
-
-#include "JavaScriptParserBaseVisitor.h"
 #define setPos(node) node->setPosition(ctx->start->getStartIndex(), ctx->stop->getStopIndex())
 
 antlrcpp::Any JavaScriptParserBaseVisitor::visitSwitchStatement(JavaScriptParser::SwitchStatementContext *) {
@@ -54,12 +52,13 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitClassElement(JavaScriptParser::C
 antlrcpp::Any JavaScriptParserBaseVisitor::visitMethodDefinition(JavaScriptParser::MethodDefinitionContext *) {
   throw std::logic_error("Not realised");
 }
-antlrcpp::Any JavaScriptParserBaseVisitor::visitFormalParameterList(JavaScriptParser::FormalParameterListContext *) {
-  throw std::logic_error("Not realised");
+antlrcpp::Any JavaScriptParserBaseVisitor::visitFormalParameterList(JavaScriptParser::FormalParameterListContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+
+  std::cerr << ctx->start->getText() << std::endl;
+  return size;
 }
-antlrcpp::Any JavaScriptParserBaseVisitor::visitFormalParameterArg(JavaScriptParser::FormalParameterArgContext *) {
-  throw std::logic_error("Not realised");
-}
+
 antlrcpp::Any
 JavaScriptParserBaseVisitor::visitLastFormalParameterArg(JavaScriptParser::LastFormalParameterArgContext *) {
   throw std::logic_error("Not realised");
@@ -165,12 +164,8 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitProgram(JavaScriptParser::Progra
   auto size = visitChildren(ctx).as<unsigned int>();
   auto program = new ProgramNode();
   setPos(program);
-  for (int i = 0; i < size; ++i) {
-    program->statementNodes.emplace_back((VarDeclarationNode *)unprocessed.top());
-    unprocessed.pop();
-  }
-  std::reverse(program->statementNodes.begin(), program->statementNodes.end());
-  astTree.emplace_back(program);
+  s.popTo(program->statementNodes, size);
+  s.push(program);
   return 1U;
 }
 
@@ -178,42 +173,31 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitBlock(JavaScriptParser::BlockCon
   auto size = visitChildren(ctx).as<unsigned int>();
   auto block = new BlockStatementNode();
   setPos(block);
-  for (int i = 0; i < size; ++i) {
-    block->statementNodes.emplace_back((VarDeclarationNode *)unprocessed.top());
-    unprocessed.pop();
-  }
-  std::reverse(block->statementNodes.begin(), block->statementNodes.end());
-  unprocessed.push(block);
+  s.popTo(block->statementNodes, size);
+  s.push(block);
   return 1U;
 }
 
 antlrcpp::Any
 JavaScriptParserBaseVisitor::visitVariableDeclarationList(JavaScriptParser::VariableDeclarationListContext *ctx) {
   auto size = visitChildren(ctx).as<unsigned int>();
-  auto varDeclarationNode = new VarDeclarationNode();
-  varDeclarationNode->kind = ctx->start->getText();
-  setPos(varDeclarationNode);
-  for (int i = 0; i < size; ++i) {
-    varDeclarationNode->declarations.emplace_back((VarDeclaratorNode *)unprocessed.top());
-    unprocessed.pop();
-  }
-  std::reverse(varDeclarationNode->declarations.begin(), varDeclarationNode->declarations.end());
-  unprocessed.push(varDeclarationNode);
+  auto node = new VarDeclarationNode();
+  node->kind = ctx->start->getText();
+  setPos(node);
+  s.popTo(node->declarations, size);
+  s.push(node);
   return 1U;
 }
 antlrcpp::Any JavaScriptParserBaseVisitor::visitVariableDeclaration(JavaScriptParser::VariableDeclarationContext *ctx) {
   auto size = visitChildren(ctx).as<unsigned int>();
   auto declarator = new VarDeclaratorNode();
   setPos(declarator);
-  auto id = new IdentifierNode();
-  setPos(id);
-  id->name = ctx->start->getText();
-  declarator->identifierNode = id;
-  if (size != 0) {
-    declarator->expressionNode = (ExpressionNode *)unprocessed.top();
-    unprocessed.pop();
+  if (size == 2) {
+    s.popTo(declarator->expressionNode);
   }
-  unprocessed.push(declarator);
+  s.popTo(declarator->identifierNode);
+
+  s.push(declarator);
 
   return 1U;
 }
@@ -224,25 +208,139 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitLiteralExpression(JavaScriptPars
     lit->value = ctx->start->getText();
 
     setPos(lit);
-    unprocessed.push(lit);
+    s.push(lit);
   }
   if (ctx->literal()->NullLiteral() != nullptr) {
     auto lit = new NullLiteral();
     lit->value = ctx->start->getText();
     setPos(lit);
-    unprocessed.push(lit);
+    s.push(lit);
   }
   if (ctx->literal()->StringLiteral() != nullptr) {
     auto lit = new StringLiteral();
     lit->value = ctx->start->getText();
     setPos(lit);
-    unprocessed.push(lit);
+    s.push(lit);
   }
   if (ctx->literal()->BooleanLiteral() != nullptr) {
     auto lit = new BooleanLiteral();
     lit->value = ctx->start->getText();
     setPos(lit);
-    unprocessed.push(lit);
+    s.push(lit);
   }
+  return 1U;
+}
+
+antlrcpp::Any JavaScriptParserBaseVisitor::visitFunctionDeclaration(JavaScriptParser::FunctionDeclarationContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto func = new FunctionDeclarationNode();
+  s.popTo(func->body);
+  s.popTo(func->params, size - 1);
+  func->id = new IdentifierNode();
+  func->id->name = ctx->Identifier()->getText();
+  s.push(func);
+  return 1U;
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitFormalParameterArg(JavaScriptParser::FormalParameterArgContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  return size;
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitFunctionBody(JavaScriptParser::FunctionBodyContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto body = new FunctionBodyNode();
+  s.popTo(body->statementNodes, size);
+  s.push(body);
+  return 1U;
+}
+
+antlrcpp::Any JavaScriptParserBaseVisitor::visitWhileStatement(JavaScriptParser::WhileStatementContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto while_node = new WhileStatementNode();
+  s.popTo(while_node->body);
+  s.popTo(while_node->cond);
+  //  std::cerr << size << std::endl;
+  return 1U;
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitIfStatement(JavaScriptParser::IfStatementContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto ifStatement = new IfStatementNode();
+
+  return 1U;
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitContinueStatement(JavaScriptParser::ContinueStatementContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto statement = new ContinueStatementNode();
+  setPos(statement);
+  s.push(statement);
+  return 1U;
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitBreakStatement(JavaScriptParser::BreakStatementContext *ctx) {
+  auto statement = new BreakStatementNode();
+  setPos(statement);
+  s.push(statement);
+  return 1U;
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitReturnStatement(JavaScriptParser::ReturnStatementContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto statement = new ReturnStatementNode();
+  if (size > 0) {
+    s.popTo(statement->arg);
+  }
+  s.push(statement);
+  return 1U;
+}
+AstNode *JavaScriptParserBaseVisitor::getAstRoot() {
+  AstNode *root;
+  s.popTo(root);
+  return root;
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitAssignable(JavaScriptParser::AssignableContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto node = new IdentifierNode();
+  node->name = ctx->start->getText();
+  setPos(node);
+  s.push(node);
+  return 1U;
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitExpressionStatement(JavaScriptParser::ExpressionStatementContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto exp = new ExpressionStatementNode();
+  s.popTo(exp->expression);
+  s.push(exp);
+  return 1U;
+}
+antlrcpp::Any
+JavaScriptParserBaseVisitor::visitAssignmentExpression(JavaScriptParser::AssignmentExpressionContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto statement = new AssignmentExpressionNode();
+  statement->operation = ctx->Assign()->toString();
+  setPos(statement);
+  s.popTo(statement->right);
+  s.popTo(statement->left);
+  s.push(statement);
+  return 1U;
+}
+antlrcpp::Any
+JavaScriptParserBaseVisitor::visitIdentifierExpression(JavaScriptParser::IdentifierExpressionContext *ctx) {
+  auto children = visitChildren(ctx);
+  auto node = new IdentifierNode();
+  node->name = ctx->start->getText();
+  setPos(node);
+  s.push(node);
+  return 1U;
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitArgumentsExpression(JavaScriptParser::ArgumentsExpressionContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto exp = new CallExpressionNode();
+  s.popTo(exp->args, size - 1);
+  s.popTo(exp->callee);
+  s.push(exp);
+  return 1U;
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitExpressionSequence(JavaScriptParser::ExpressionSequenceContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto exp = new ExpressionSequenceNode();
+  s.popTo(exp->expressions, size);
+  s.push(exp);
   return 1U;
 }
