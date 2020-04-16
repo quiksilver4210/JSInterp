@@ -9,10 +9,10 @@
 
 class JavaScriptParserBaseVisitor : public JavaScriptParserVisitor {
   antlrcpp::Any defaultResult() override {
-    return 0U;
+    return 0;
   }
   antlrcpp::Any aggregateResult(antlrcpp::Any result, const antlrcpp::Any &nextResult) override {
-    return result.as<unsigned int>() + nextResult.as<unsigned int>();
+    return result.as<int>() + nextResult.as<int>();
   };
   std::string getOperator(const std::vector<antlr4::tree::TerminalNode *> &v) {
     antlr4::tree::TerminalNode *opToken;
@@ -26,10 +26,9 @@ class JavaScriptParserBaseVisitor : public JavaScriptParserVisitor {
   }
 
  public:
-  //  std::stack<AstNode *> unprocessed;
   NodeStack nodeStack;
-  //  std::vector<AstNode *> astTree;
   AstNode *getAstRoot();
+
   antlrcpp::Any visitYieldStatement(JavaScriptParser::YieldStatementContext *ctx) override;
   antlrcpp::Any visitWithStatement(JavaScriptParser::WithStatementContext *ctx) override;
   antlrcpp::Any visitSwitchStatement(JavaScriptParser::SwitchStatementContext *ctx) override;
@@ -111,240 +110,204 @@ class JavaScriptParserBaseVisitor : public JavaScriptParserVisitor {
   antlrcpp::Any visitAssignmentOperator(JavaScriptParser::AssignmentOperatorContext *ctx) override;
 
   antlrcpp::Any visitSourceElement(JavaScriptParser::SourceElementContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
   antlrcpp::Any visitStatement(JavaScriptParser::StatementContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
   antlrcpp::Any visitStatementList(JavaScriptParser::StatementListContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
   antlrcpp::Any visitDeclaration(JavaScriptParser::DeclarationContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
   antlrcpp::Any visitVariableStatement(JavaScriptParser::VariableStatementContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
-  antlrcpp::Any visitEmptyStatement(JavaScriptParser::EmptyStatementContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
-    return size;
-  }
+  antlrcpp::Any visitEmptyStatement(JavaScriptParser::EmptyStatementContext *ctx) override;
 
   antlrcpp::Any visitVarModifier(JavaScriptParser::VarModifierContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
   antlrcpp::Any visitSourceElements(JavaScriptParser::SourceElementsContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
-  antlrcpp::Any visitArrayLiteral(JavaScriptParser::ArrayLiteralContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
-    return size;
-  }
+  antlrcpp::Any visitArrayLiteral(JavaScriptParser::ArrayLiteralContext *ctx) override;
 
   antlrcpp::Any visitElementList(JavaScriptParser::ElementListContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
   antlrcpp::Any visitArrayElement(JavaScriptParser::ArrayElementContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
   antlrcpp::Any visitObjectLiteral(JavaScriptParser::ObjectLiteralContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
-  antlrcpp::Any visitPropertyExpressionAssignment(JavaScriptParser::PropertyExpressionAssignmentContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
-    return size;
-  }
+  antlrcpp::Any visitPropertyExpressionAssignment(JavaScriptParser::PropertyExpressionAssignmentContext *ctx) override;
 
   antlrcpp::Any
   visitComputedPropertyExpressionAssignment(JavaScriptParser::ComputedPropertyExpressionAssignmentContext *ctx)
                                                                                                       override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
   antlrcpp::Any visitFunctionProperty(JavaScriptParser::FunctionPropertyContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
   antlrcpp::Any visitPropertyShorthand(JavaScriptParser::PropertyShorthandContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
   antlrcpp::Any visitPropertyName(JavaScriptParser::PropertyNameContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
   antlrcpp::Any visitArguments(JavaScriptParser::ArgumentsContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
   antlrcpp::Any visitArgument(JavaScriptParser::ArgumentContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
   antlrcpp::Any visitExpressionSequence(JavaScriptParser::ExpressionSequenceContext *ctx) override;
 
   antlrcpp::Any visitTemplateStringExpression(JavaScriptParser::TemplateStringExpressionContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
   antlrcpp::Any visitObjectLiteralExpression(JavaScriptParser::ObjectLiteralExpressionContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
   antlrcpp::Any visitMetaExpression(JavaScriptParser::MetaExpressionContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
   antlrcpp::Any visitInExpression(JavaScriptParser::InExpressionContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
-  antlrcpp::Any visitNotExpression(JavaScriptParser::NotExpressionContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
-    return size;
-  }
+  antlrcpp::Any visitNotExpression(JavaScriptParser::NotExpressionContext *ctx) override;
 
   antlrcpp::Any visitArgumentsExpression(JavaScriptParser::ArgumentsExpressionContext *ctx) override;
 
   antlrcpp::Any visitThisExpression(JavaScriptParser::ThisExpressionContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
-  antlrcpp::Any visitFunctionExpression(JavaScriptParser::FunctionExpressionContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
-    return size;
-  }
+  antlrcpp::Any visitFunctionExpression(JavaScriptParser::FunctionExpressionContext *ctx) override;
 
-  antlrcpp::Any visitUnaryMinusExpression(JavaScriptParser::UnaryMinusExpressionContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
-    return size;
-  }
+  antlrcpp::Any visitUnaryMinusExpression(JavaScriptParser::UnaryMinusExpressionContext *ctx) override;
 
   antlrcpp::Any visitTypeofExpression(JavaScriptParser::TypeofExpressionContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
   antlrcpp::Any visitInstanceofExpression(JavaScriptParser::InstanceofExpressionContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
-  antlrcpp::Any visitUnaryPlusExpression(JavaScriptParser::UnaryPlusExpressionContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
-    return size;
-  }
+  antlrcpp::Any visitUnaryPlusExpression(JavaScriptParser::UnaryPlusExpressionContext *ctx) override;
 
   antlrcpp::Any visitDeleteExpression(JavaScriptParser::DeleteExpressionContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
-  antlrcpp::Any visitEqualityExpression(JavaScriptParser::EqualityExpressionContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
-    return size;
-  }
+  antlrcpp::Any visitEqualityExpression(JavaScriptParser::EqualityExpressionContext *ctx) override;
 
   antlrcpp::Any visitSuperExpression(JavaScriptParser::SuperExpressionContext *ctx) override;
 
   antlrcpp::Any visitParenthesizedExpression(JavaScriptParser::ParenthesizedExpressionContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 
-  antlrcpp::Any visitRelationalExpression(JavaScriptParser::RelationalExpressionContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
-    return size;
-  }
+  antlrcpp::Any visitRelationalExpression(JavaScriptParser::RelationalExpressionContext *ctx) override;
   antlrcpp::Any visitArrayLiteralExpression(JavaScriptParser::ArrayLiteralExpressionContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
-  antlrcpp::Any visitMemberDotExpression(JavaScriptParser::MemberDotExpressionContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
-    return size;
-  }
+  antlrcpp::Any visitMemberDotExpression(JavaScriptParser::MemberDotExpressionContext *ctx) override;
   antlrcpp::Any visitClassExpression(JavaScriptParser::ClassExpressionContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
-  antlrcpp::Any visitMemberIndexExpression(JavaScriptParser::MemberIndexExpressionContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
-    return size;
-  }
-  antlrcpp::Any visitAssignmentOperatorExpression(JavaScriptParser::AssignmentOperatorExpressionContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
-    return size;
-  }
+  antlrcpp::Any visitMemberIndexExpression(JavaScriptParser::MemberIndexExpressionContext *ctx) override;
+  antlrcpp::Any visitAssignmentOperatorExpression(JavaScriptParser::AssignmentOperatorExpressionContext *ctx) override;
   antlrcpp::Any visitFunctionDecl(JavaScriptParser::FunctionDeclContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
   antlrcpp::Any visitLiteral(JavaScriptParser::LiteralContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
   antlrcpp::Any visitNumericLiteral(JavaScriptParser::NumericLiteralContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
   antlrcpp::Any visitBigintLiteral(JavaScriptParser::BigintLiteralContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
   antlrcpp::Any visitIdentifierName(JavaScriptParser::IdentifierNameContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
   antlrcpp::Any visitReservedWord(JavaScriptParser::ReservedWordContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
   antlrcpp::Any visitKeyword(JavaScriptParser::KeywordContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
   antlrcpp::Any visitGetter(JavaScriptParser::GetterContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
   antlrcpp::Any visitSetter(JavaScriptParser::SetterContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
   antlrcpp::Any visitEos(JavaScriptParser::EosContext *ctx) override {
-    auto size = visitChildren(ctx).as<unsigned int>();
+    auto size = visitChildren(ctx).as<int>();
     return size;
   }
 };

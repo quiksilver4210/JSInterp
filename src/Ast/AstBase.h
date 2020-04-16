@@ -44,39 +44,36 @@ class StringLiteral;
 class NumericLiteral;
 class BooleanLiteral;
 
-enum NodeType {
-  ProgramType,
-  VarDeclarationType,
-  VarDeclaratorType,
-  StatementType,
-  BlockStatementType,
-  IdentifierType,
-  ExpressionType,
-  ArrayExpressionType,
-  FunctionType,
-  FunctionDeclarationType,
-  FunctionBodyType,
-  FunctionExpressionType,
-  UnaryExpressionType,
-  BinaryExpressionType,
-  AssignmentExpressionType,
-  LogicalExpressionType,
-  ConditionalExpressionType,
-  CallExpressionType,
-  NullLiteralType,
-  StringLiteralType,
-  NumericLiteralType,
-  BooleanLiteralType,
-  WhileStatementType,
-  IfStatementType,
-  BreakStatementType,
-  ReturnStatementType,
-  ContinueStatementType,
-  ExpressionStatementType,
-  ExpressionSequenceType
-
+enum class NodeType {
+  Program,
+  VarDeclaration,
+  VarDeclarator,
+  Statement,
+  BlockStatement,
+  Identifier,
+  Expression,
+  ArrayExpression,
+  Function,
+  FunctionDeclaration,
+  FunctionBody,
+  FunctionExpression,
+  UnaryExpression,
+  BinaryExpression,
+  AssignmentExpression,
+  CallExpression,
+  NullLiteral,
+  StringLiteral,
+  NumericLiteral,
+  BooleanLiteral,
+  WhileStatement,
+  IfStatement,
+  BreakStatement,
+  ReturnStatement,
+  ContinueStatement,
+  ExpressionStatement,
+  ExpressionSequence
 };
-enum BinaryOperator {
+enum class BinaryOperator {
   Plus,
   Minus,
   BitNot,
@@ -106,34 +103,87 @@ enum BinaryOperator {
 
 class Constants {
  public:
-  inline static std::map<NodeType, std::string> nodeName = {{NodeType::ProgramType, "Program"},
-                                                            {NodeType::VarDeclarationType, "VarDeclaration"},
-                                                            {NodeType::VarDeclaratorType, "VarDeclarator"},
-                                                            {NodeType::StatementType, "Statement"},
-                                                            {NodeType::BlockStatementType, "BlockStatement"},
-                                                            {NodeType::IdentifierType, "Identifier"},
-                                                            {NodeType::ExpressionType, "Expression"},
-                                                            {NodeType::NullLiteralType, "NullLiteral"},
-                                                            {NodeType::StringLiteralType, "StringLiteral"},
-                                                            {NodeType::NumericLiteralType, "NumericLiteral"},
-                                                            {NodeType::BooleanLiteralType, "BooleanLiteral"},
-                                                            {NodeType::FunctionType, "Function"},
-                                                            {NodeType::FunctionDeclarationType, "FunctionDeclaration"},
-                                                            {NodeType::FunctionBodyType, "FunctionBodyNode"},
-                                                            {NodeType::FunctionExpressionType, "FunctionExpression"},
-                                                            {NodeType::WhileStatementType, "WhileStatement"},
-                                                            {NodeType::IfStatementType, "IfExpression"},
-                                                            {NodeType::ReturnStatementType, "ReturnStatement"},
-                                                            {NodeType::BreakStatementType, "BreakStatement"},
-                                                            {NodeType::ContinueStatementType, "ContinueStatement"},
-                                                            {NodeType::ExpressionStatementType, "ExpressionStatement"},
-                                                            {NodeType::AssignmentExpressionType,
-                                                             "AssignmentExpression"},
-                                                            {CallExpressionType, "CallExpression"},
-                                                            {ExpressionSequenceType, "ExpressionSequence"},
-                                                            {NodeType::BinaryExpressionType, "BinaryExpression"}};
+  inline static std::map<NodeType, std::string> nodeName = {{NodeType::Program, "Program"},
+                                                            {NodeType::VarDeclaration, "VarDeclaration"},
+                                                            {NodeType::VarDeclarator, "VarDeclarator"},
+                                                            {NodeType::Statement, "Statement"},
+                                                            {NodeType::BlockStatement, "BlockStatement"},
+                                                            {NodeType::Identifier, "Identifier"},
+                                                            {NodeType::Expression, "Expression"},
+                                                            {NodeType::NullLiteral, "NullLiteral"},
+                                                            {NodeType::StringLiteral, "StringLiteral"},
+                                                            {NodeType::NumericLiteral, "NumericLiteral"},
+                                                            {NodeType::BooleanLiteral, "BooleanLiteral"},
+                                                            {NodeType::Function, "Function"},
+                                                            {NodeType::FunctionDeclaration, "FunctionDeclaration"},
+                                                            {NodeType::FunctionBody, "FunctionBodyNode"},
+                                                            {NodeType::FunctionExpression, "FunctionExpression"},
+                                                            {NodeType::WhileStatement, "WhileStatement"},
+                                                            {NodeType::IfStatement, "IfExpression"},
+                                                            {NodeType::ReturnStatement, "ReturnStatement"},
+                                                            {NodeType::BreakStatement, "BreakStatement"},
+                                                            {NodeType::ContinueStatement, "ContinueStatement"},
+                                                            {NodeType::ExpressionStatement, "ExpressionStatement"},
+                                                            {NodeType::AssignmentExpression, "AssignmentExpression"},
+                                                            {NodeType::CallExpression, "CallExpression"},
+                                                            {NodeType::ExpressionSequence, "ExpressionSequence"},
+                                                            {NodeType::BinaryExpression, "BinaryExpression"},
+                                                            {NodeType::UnaryExpression, "UnaryExpression"}};
 
-  //  inline static std::map<std::string, BinaryOperator> binOperator = {{}};
+  inline static std::map<std::string, BinaryOperator> opType = {{"+", BinaryOperator::Plus},
+                                                                {"-", BinaryOperator::Minus},
+                                                                {"~", BinaryOperator::BitNot},
+                                                                {"!", BinaryOperator::Not},
+                                                                {"*", BinaryOperator::Multiply},
+                                                                {"/", BinaryOperator::Divide},
+                                                                {"%", BinaryOperator::Modulus},
+                                                                {"**", BinaryOperator::Power},
+                                                                {">>", BinaryOperator::RightShiftArithmetic},
+                                                                {"<<", BinaryOperator::LeftShiftArithmetic},
+                                                                {">>>", BinaryOperator::RightShiftLogical},
+                                                                {"<", BinaryOperator::LessThan},
+                                                                {">", BinaryOperator::MoreThan},
+                                                                {"<=", BinaryOperator::LessThanEquals},
+                                                                {"=>", BinaryOperator::GreaterThanEquals},
+                                                                {"==", BinaryOperator::Equals},
+                                                                {"!=", BinaryOperator::NotEquals},
+                                                                {"===", BinaryOperator::IdentityEquals},
+                                                                {"!==", BinaryOperator::IdentityNotEquals},
+                                                                {"&", BinaryOperator::BitAnd},
+                                                                {"^", BinaryOperator::BitXOr},
+                                                                {"|", BinaryOperator::BitOr},
+                                                                {"&&", BinaryOperator::And},
+                                                                {"||", BinaryOperator::Or}};
+
+  inline static std::map<BinaryOperator, std::string> opName = {{BinaryOperator::Plus, "Plus"},
+                                                                {BinaryOperator::Minus, "Minus"},
+                                                                {BinaryOperator::BitNot, "BitNot"},
+                                                                {BinaryOperator::Not, "Not"},
+                                                                {BinaryOperator::Multiply, "Multiply"},
+                                                                {BinaryOperator::Divide, "Divide"},
+                                                                {BinaryOperator::Modulus, "Modulus"},
+                                                                {BinaryOperator::Power, "Power"},
+                                                                {BinaryOperator::RightShiftArithmetic,
+                                                                 "RightShiftArithmetic"},
+                                                                {BinaryOperator::LeftShiftArithmetic,
+                                                                 "LeftShiftArithmetic"},
+                                                                {BinaryOperator::RightShiftLogical,
+                                                                 "RightShiftLogical"},
+                                                                {BinaryOperator::LessThan, "LessThan"},
+                                                                {BinaryOperator::MoreThan, "MoreThan"},
+                                                                {BinaryOperator::LessThanEquals, "LessThanEquals"},
+                                                                {BinaryOperator::GreaterThanEquals,
+                                                                 "GreaterThanEquals"},
+                                                                {BinaryOperator::Equals, "Equals"},
+                                                                {BinaryOperator::NotEquals, "NotEquals"},
+                                                                {BinaryOperator::IdentityEquals, "IdentityEquals"},
+                                                                {BinaryOperator::IdentityNotEquals,
+                                                                 "IdentityNotEquals"},
+                                                                {BinaryOperator::BitAnd, "BitAnd"},
+                                                                {BinaryOperator::BitXOr, "BitXOr"},
+                                                                {BinaryOperator::BitOr, "BitOr"},
+                                                                {BinaryOperator::And, "And"},
+                                                                {BinaryOperator::Or, "Or"}};
 };
 
 class NodeStack {
@@ -147,13 +197,6 @@ class NodeStack {
   void popTo(T*& node) {
     node = (T*)stack_.top();
     stack_.pop();
-  }
-  template <typename T>
-  void popTo(std::vector<T*>& nodes, size_t size) {
-    nodes.resize(size);
-    for (int i = size - 1; i >= 0; --i) {
-      popTo(nodes[i]);
-    }
   }
 };
 #endif  // JSINTERP_ASTBASE_H

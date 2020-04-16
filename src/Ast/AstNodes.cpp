@@ -21,11 +21,12 @@ class AstNode {
   }
   virtual void accept(AstVisitor* visitor){};
 };
+
 class IdentifierNode : public AstNode {
  public:
   std::string name;
   IdentifierNode() {
-    type = IdentifierType;
+    type = NodeType::Identifier;
   }
   void accept(AstVisitor* visitor) override {
     return visitor->visit((IdentifierNode*)this);
@@ -36,7 +37,7 @@ class ProgramNode : public AstNode {
  public:
   std::vector<StatementNode*> statementNodes;
   ProgramNode() {
-    type = ProgramType;
+    type = NodeType::Program;
   }
   void accept(AstVisitor* visitor) override {
     return visitor->visit((ProgramNode*)this);
@@ -48,7 +49,7 @@ class BlockStatementNode : public StatementNode {
  public:
   std::vector<StatementNode*> statementNodes;
   BlockStatementNode() {
-    type = BlockStatementType;
+    type = NodeType::BlockStatement;
   }
   void accept(AstVisitor* visitor) override {
     return visitor->visit((BlockStatementNode*)this);
@@ -58,7 +59,7 @@ class BlockStatementNode : public StatementNode {
 class ExpressionNode : public StatementNode {
  public:
   ExpressionNode() {
-    type = ExpressionType;
+    type = NodeType::Expression;
   }
 };
 
@@ -67,7 +68,7 @@ class VarDeclarationNode : public StatementNode {
   std::string kind;
   std::vector<VarDeclaratorNode*> declarations;
   VarDeclarationNode() {
-    type = VarDeclarationType;
+    type = NodeType::VarDeclaration;
   }
   void accept(AstVisitor* visitor) override {
     return visitor->visit((VarDeclarationNode*)this);
@@ -76,7 +77,7 @@ class VarDeclarationNode : public StatementNode {
 class VarDeclaratorNode : public AstNode {
  public:
   VarDeclaratorNode() {
-    type = VarDeclaratorType;
+    type = NodeType::VarDeclarator;
   }
   IdentifierNode* identifierNode = nullptr;
   ExpressionNode* expressionNode = nullptr;
@@ -89,7 +90,7 @@ class ArrayExpression : public ExpressionNode {
  public:
   std::vector<ExpressionNode*> elements;
   ArrayExpression() {
-    type = ArrayExpressionType;
+    type = NodeType::ArrayExpression;
   }
   void accept(AstVisitor* visitor) override {
     //    return visitor->visit((ArrayExpression*)this);
@@ -102,7 +103,7 @@ class AssignmentExpressionNode : public ExpressionNode {
   ExpressionNode* right;
   std::string operation;
   AssignmentExpressionNode() {
-    type = AssignmentExpressionType;
+    type = NodeType::AssignmentExpression;
   }
   void accept(AstVisitor* visitor) override {
     return visitor->visit(this);
@@ -112,7 +113,7 @@ class AssignmentExpressionNode : public ExpressionNode {
 class NullLiteral : public ExpressionNode {
  public:
   NullLiteral() {
-    type = NullLiteralType;
+    type = NodeType::NullLiteral;
   }
   std::string value;
   void accept(AstVisitor* visitor) override {
@@ -123,7 +124,7 @@ class NullLiteral : public ExpressionNode {
 class StringLiteral : public ExpressionNode {
  public:
   StringLiteral() {
-    type = StringLiteralType;
+    type = NodeType::StringLiteral;
   }
   std::string value;
   void accept(AstVisitor* visitor) override {
@@ -133,7 +134,7 @@ class StringLiteral : public ExpressionNode {
 class NumericLiteral : public ExpressionNode {
  public:
   NumericLiteral() {
-    type = NumericLiteralType;
+    type = NodeType::NumericLiteral;
   }
   std::string value;
   void accept(AstVisitor* visitor) override {
@@ -143,7 +144,7 @@ class NumericLiteral : public ExpressionNode {
 class BooleanLiteral : public ExpressionNode {
  public:
   BooleanLiteral() {
-    type = BooleanLiteralType;
+    type = NodeType::BooleanLiteral;
   }
   std::string value;
   void accept(AstVisitor* visitor) override {
@@ -156,7 +157,7 @@ class FunctionDeclarationNode : public AstNode {
   std::vector<IdentifierNode*> params;
   FunctionBodyNode* body;
   FunctionDeclarationNode() {
-    type = NodeType::FunctionDeclarationType;
+    type = NodeType::FunctionDeclaration;
   }
   void accept(AstVisitor* visitor) override {
     return visitor->visit(this);
@@ -165,7 +166,7 @@ class FunctionDeclarationNode : public AstNode {
 class FunctionBodyNode : public BlockStatementNode {
  public:
   FunctionBodyNode() {
-    type = FunctionBodyType;
+    type = NodeType::FunctionBody;
   }
   void accept(AstVisitor* visitor) override {
     return visitor->visit(this);
@@ -176,7 +177,7 @@ class WhileStatementNode : public StatementNode {
   ExpressionNode* cond;
   StatementNode* body;
   WhileStatementNode() {
-    type = WhileStatementType;
+    type = NodeType::WhileStatement;
   }
   void accept(AstVisitor* visitor) override {
     return visitor->visit(this);
@@ -188,7 +189,7 @@ class IfStatementNode : public StatementNode {
   StatementNode* cons = nullptr;
   StatementNode* alter = nullptr;
   IfStatementNode() {
-    type = IfStatementType;
+    type = NodeType::IfStatement;
   }
   void accept(AstVisitor* visitor) override {
     return visitor->visit(this);
@@ -197,7 +198,7 @@ class IfStatementNode : public StatementNode {
 class BreakStatementNode : public StatementNode {
  public:
   BreakStatementNode() {
-    type = BreakStatementType;
+    type = NodeType::BreakStatement;
   }
   void accept(AstVisitor* visitor) override {
     return visitor->visit(this);
@@ -206,7 +207,7 @@ class BreakStatementNode : public StatementNode {
 class ContinueStatementNode : public StatementNode {
  public:
   ContinueStatementNode() {
-    type = ContinueStatementType;
+    type = NodeType::ContinueStatement;
   }
   void accept(AstVisitor* visitor) override {
     return visitor->visit(this);
@@ -216,7 +217,7 @@ class ReturnStatementNode : public StatementNode {
  public:
   ExpressionNode* arg = nullptr;
   ReturnStatementNode() {
-    type = ReturnStatementType;
+    type = NodeType::ReturnStatement;
   }
   void accept(AstVisitor* visitor) override {
     return visitor->visit(this);
@@ -226,7 +227,7 @@ class ReturnStatementNode : public StatementNode {
 class ExpressionStatementNode : public StatementNode {
  public:
   ExpressionStatementNode() {
-    type = ExpressionStatementType;
+    type = NodeType::ExpressionStatement;
   }
   ExpressionNode* expression;
   void accept(AstVisitor* visitor) override {
@@ -239,7 +240,7 @@ class CallExpressionNode : public ExpressionNode {
   ExpressionNode* callee;
   std::vector<ExpressionNode*> args;
   CallExpressionNode() {
-    type = CallExpressionType;
+    type = NodeType::CallExpression;
   }
   void accept(AstVisitor* visitor) override {
     return visitor->visit(this);
@@ -249,7 +250,7 @@ class ExpressionSequenceNode : public ExpressionNode {
  public:
   std::vector<ExpressionNode*> expressions;
   ExpressionSequenceNode() {
-    type = ExpressionSequenceType;
+    type = NodeType::ExpressionSequence;
   }
   void accept(AstVisitor* visitor) override {
     return visitor->visit(this);
@@ -258,10 +259,21 @@ class ExpressionSequenceNode : public ExpressionNode {
 class BinaryExpressionNode : public ExpressionNode {
  public:
   BinaryExpressionNode() {
-    type = BinaryExpressionType;
+    type = NodeType::BinaryExpression;
   }
   ExpressionNode* left;
   ExpressionNode* right;
+  std::string anOperator;
+  void accept(AstVisitor* visitor) override {
+    return visitor->visit(this);
+  }
+};
+class UnaryExpressionNode : public ExpressionNode {
+ public:
+  UnaryExpressionNode() {
+    type = NodeType::UnaryExpression;
+  }
+  ExpressionNode* arg;
   std::string anOperator;
   void accept(AstVisitor* visitor) override {
     return visitor->visit(this);

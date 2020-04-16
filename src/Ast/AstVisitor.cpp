@@ -12,21 +12,29 @@ std::string AstVisitor::getTextTree() {
 }
 
 void AstVisitor::printNodeName(NodeType type) {
-  printLine();
+  printLine(1);
   lastOffset += 4;
-  offset.emplace_back(lastOffset);
+  ++tabCount;
   tree << "+ " << C::nodeName[type] << std::endl;
 }
 
-void AstVisitor::printLine() {
-  for (auto i : offset) {
+void AstVisitor::printLine(int flag = 0) {
+  if (tabCount == 0) {
+    return;
+  }
+  for (auto i = 0; i < tabCount - 1; ++i) {
+    tree << std::setfill(' ') << std::setw(4) << "|";
+  }
+  if (flag) {
+    tree << std::setfill(' ') << std::setw(3) << "";
+  } else {
     tree << std::setfill(' ') << std::setw(4) << "|";
   }
 }
 
 void AstVisitor::printArgs(const std::vector<std::pair<std::string, std::string>>& args) {
   for (const auto& arg : args) {
-    printLine();
+    printLine(0);
     tree << arg.first << ": " << arg.second << std::endl;
   }
 }
@@ -38,7 +46,7 @@ void AstVisitor::visitNewNode(AstNode* node) {
   printNodeName(node->type);
   node->accept(this);
   lastOffset -= 4;
-  offset.pop_back();
+  --tabCount;
 }
 
 void AstVisitor::visit(ProgramNode* node) {
@@ -131,10 +139,9 @@ void AstVisitor::visit(BinaryExpressionNode* node) {
 }
 void AstVisitor::visitNewNode(const std::string& fieldName, const std::vector<AstNode*>& nodes) {
   printLine();
-  tree << fieldName << ": ";
+  tree << fieldName << ": " << std::endl;
   lastOffset += 4;
-  offset.push_back(lastOffset);
-  tree << std::endl;
+  ++tabCount;
   for (auto i : nodes) {
     if (i == nullptr) {
       continue;
@@ -142,10 +149,9 @@ void AstVisitor::visitNewNode(const std::string& fieldName, const std::vector<As
     printNodeName(i->type);
     i->accept(this);
     lastOffset -= 4;
-    offset.pop_back();
+    --tabCount;
   }
-
-  offset.pop_back();
+  --tabCount;
 }
 void AstVisitor::visit(IfStatementNode* node) {
   visitNewNode("condition", {node->cond});
@@ -156,4 +162,8 @@ void AstVisitor::visit(AssignmentExpressionNode* node) {
   visitNewNode("left", {node->left});
   printArgs({{"operator", node->operation}});
   visitNewNode("right", {node->right});
+}
+void AstVisitor::visit(UnaryExpressionNode* node) {
+  printArgs({{"operator", node->anOperator}});
+  visitNewNode(node->arg);
 }
