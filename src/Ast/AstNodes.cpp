@@ -4,11 +4,23 @@
 
 #ifndef JSINTERP_ASTNODES_CPP
 #define JSINTERP_ASTNODES_CPP
-#include "AstNodes.h"
+
 #include <string>
 #include <vector>
+#include "AstBase.h"
 #include "AstVisitor.h"
 
+class AstNode {
+ public:
+  NodeType type;
+  int start;
+  int stop;
+  void setPosition(int st, int sp) {
+    start = st;
+    stop = sp;
+  }
+  virtual void accept(AstVisitor* visitor){};
+};
 class IdentifierNode : public AstNode {
  public:
   std::string name;
@@ -93,7 +105,7 @@ class AssignmentExpressionNode : public ExpressionNode {
     type = AssignmentExpressionType;
   }
   void accept(AstVisitor* visitor) override {
-    //     return visitor->visit(this);
+    return visitor->visit(this);
   }
 };
 
@@ -167,19 +179,19 @@ class WhileStatementNode : public StatementNode {
     type = WhileStatementType;
   }
   void accept(AstVisitor* visitor) override {
-    //    return visitor->visit(this);
+    return visitor->visit(this);
   }
 };
 class IfStatementNode : public StatementNode {
  public:
-  ExpressionNode* cond;
-  StatementNode* cons;
-  StatementNode* alter;
+  ExpressionNode* cond = nullptr;
+  StatementNode* cons = nullptr;
+  StatementNode* alter = nullptr;
   IfStatementNode() {
     type = IfStatementType;
   }
   void accept(AstVisitor* visitor) override {
-    //        return visitor->visit(this);
+    return visitor->visit(this);
   }
 };
 class BreakStatementNode : public StatementNode {
@@ -188,7 +200,7 @@ class BreakStatementNode : public StatementNode {
     type = BreakStatementType;
   }
   void accept(AstVisitor* visitor) override {
-    //        return visitor->visit(this);
+    return visitor->visit(this);
   }
 };
 class ContinueStatementNode : public StatementNode {
@@ -197,17 +209,17 @@ class ContinueStatementNode : public StatementNode {
     type = ContinueStatementType;
   }
   void accept(AstVisitor* visitor) override {
-    //        return visitor->visit(this);
+    return visitor->visit(this);
   }
 };
 class ReturnStatementNode : public StatementNode {
  public:
-  ExpressionNode* arg;
+  ExpressionNode* arg = nullptr;
   ReturnStatementNode() {
     type = ReturnStatementType;
   }
   void accept(AstVisitor* visitor) override {
-    //        return visitor->visit(this);
+    return visitor->visit(this);
   }
 };
 
@@ -238,6 +250,21 @@ class ExpressionSequenceNode : public ExpressionNode {
   std::vector<ExpressionNode*> expressions;
   ExpressionSequenceNode() {
     type = ExpressionSequenceType;
+  }
+  void accept(AstVisitor* visitor) override {
+    return visitor->visit(this);
+  }
+};
+class BinaryExpressionNode : public ExpressionNode {
+ public:
+  BinaryExpressionNode() {
+    type = BinaryExpressionType;
+  }
+  ExpressionNode* left;
+  ExpressionNode* right;
+  std::string anOperator;
+  void accept(AstVisitor* visitor) override {
+    return visitor->visit(this);
   }
 };
 #endif  // JSINTERP_ASTNODES_CPP

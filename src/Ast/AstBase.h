@@ -76,6 +76,33 @@ enum NodeType {
   ExpressionSequenceType
 
 };
+enum BinaryOperator {
+  Plus,
+  Minus,
+  BitNot,
+  Not,
+  Multiply,
+  Divide,
+  Modulus,
+  Power,
+  NullCoalesce,
+  RightShiftArithmetic,
+  LeftShiftArithmetic,
+  RightShiftLogical,
+  LessThan,
+  MoreThan,
+  LessThanEquals,
+  GreaterThanEquals,
+  Equals,
+  NotEquals,
+  IdentityEquals,
+  IdentityNotEquals,
+  BitAnd,
+  BitXOr,
+  BitOr,
+  And,
+  Or
+};
 
 class Constants {
  public:
@@ -103,7 +130,10 @@ class Constants {
                                                             {NodeType::AssignmentExpressionType,
                                                              "AssignmentExpression"},
                                                             {CallExpressionType, "CallExpression"},
-                                                            {ExpressionSequenceType, "ExpressionSequence"}};
+                                                            {ExpressionSequenceType, "ExpressionSequence"},
+                                                            {NodeType::BinaryExpressionType, "BinaryExpression"}};
+
+  //  inline static std::map<std::string, BinaryOperator> binOperator = {{}};
 };
 
 class NodeStack {

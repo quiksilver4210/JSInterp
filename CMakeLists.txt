@@ -1,5 +1,6 @@
-project(JSInterp)
 cmake_minimum_required(VERSION 3.15)
+project(JSInterp)
+
 set(CMAKE_CXX_STANDARD 17)
 set(GrammarGenerated
         ${PROJECT_SOURCE_DIR}/generated/JavaScriptLexer.cpp
@@ -10,7 +11,7 @@ set(GrammarGenerated
         ${PROJECT_SOURCE_DIR}/generated/JavaScriptBaseLexer.cpp
         ${PROJECT_SOURCE_DIR}/generated/JavaScriptBaseParser.cpp
         src/Ast/AstNodes.cpp
-        src/Ast/AstVisitor.cpp src/Ast/AstVisitor.h src/Ast/AstNodes.h src/Ast/AstBase.h)
+        src/Ast/AstVisitor.cpp src/Ast/AstVisitor.h src/Ast/AstBase.h)
 
 include_directories(${PROJECT_SOURCE_DIR}/generated)
 

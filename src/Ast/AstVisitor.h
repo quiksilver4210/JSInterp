@@ -28,6 +28,7 @@ class AstVisitor {
 
   std::string getTextTree();
   void visitNewNode(AstNode* node);
+  void visitNewNode(const std::string& fieldName, const std::vector<AstNode*>& nodes);
   void visit(ProgramNode* node);
   void visit(BlockStatementNode* node);
   void visit(VarDeclarationNode* node);
@@ -41,6 +42,14 @@ class AstVisitor {
   void visit(FunctionBodyNode* node);
   void visit(CallExpressionNode* node);
   void visit(ExpressionStatementNode* node);
+  void visit(WhileStatementNode* node);
+  void visit(BreakStatementNode* node);
+  void visit(ContinueStatementNode* node);
+  void visit(ReturnStatementNode* node);
+  void visit(ExpressionSequenceNode* node);
+  void visit(BinaryExpressionNode* node);
+  void visit(IfStatementNode* node);
+  void visit(AssignmentExpressionNode* node);
 };
 
 #endif  // JSINTERP_ASTVISITOR_H

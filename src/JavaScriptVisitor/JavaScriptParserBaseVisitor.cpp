@@ -159,13 +159,22 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitPropertySetter(JavaScriptParser:
 antlrcpp::Any JavaScriptParserBaseVisitor::visitLabelledStatement(JavaScriptParser::LabelledStatementContext *) {
   throw std::logic_error("Not realised");
 }
+antlrcpp::Any JavaScriptParserBaseVisitor::visitImportExpression(JavaScriptParser::ImportExpressionContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitNewExpression(JavaScriptParser::NewExpressionContext *) {
+  throw std::logic_error("Not realised");
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitSuperExpression(JavaScriptParser::SuperExpressionContext *) {
+  throw std::logic_error("Not realised");
+}
 
 antlrcpp::Any JavaScriptParserBaseVisitor::visitProgram(JavaScriptParser::ProgramContext *ctx) {
   auto size = visitChildren(ctx).as<unsigned int>();
   auto program = new ProgramNode();
   setPos(program);
-  s.popTo(program->statementNodes, size);
-  s.push(program);
+  nodeStack.popTo(program->statementNodes, size);
+  nodeStack.push(program);
   return 1U;
 }
 
@@ -173,8 +182,8 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitBlock(JavaScriptParser::BlockCon
   auto size = visitChildren(ctx).as<unsigned int>();
   auto block = new BlockStatementNode();
   setPos(block);
-  s.popTo(block->statementNodes, size);
-  s.push(block);
+  nodeStack.popTo(block->statementNodes, size);
+  nodeStack.push(block);
   return 1U;
 }
 
@@ -184,8 +193,8 @@ JavaScriptParserBaseVisitor::visitVariableDeclarationList(JavaScriptParser::Vari
   auto node = new VarDeclarationNode();
   node->kind = ctx->start->getText();
   setPos(node);
-  s.popTo(node->declarations, size);
-  s.push(node);
+  nodeStack.popTo(node->declarations, size);
+  nodeStack.push(node);
   return 1U;
 }
 antlrcpp::Any JavaScriptParserBaseVisitor::visitVariableDeclaration(JavaScriptParser::VariableDeclarationContext *ctx) {
@@ -193,11 +202,11 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitVariableDeclaration(JavaScriptPa
   auto declarator = new VarDeclaratorNode();
   setPos(declarator);
   if (size == 2) {
-    s.popTo(declarator->expressionNode);
+    nodeStack.popTo(declarator->expressionNode);
   }
-  s.popTo(declarator->identifierNode);
+  nodeStack.popTo(declarator->identifierNode);
 
-  s.push(declarator);
+  nodeStack.push(declarator);
 
   return 1U;
 }
@@ -208,25 +217,25 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitLiteralExpression(JavaScriptPars
     lit->value = ctx->start->getText();
 
     setPos(lit);
-    s.push(lit);
+    nodeStack.push(lit);
   }
   if (ctx->literal()->NullLiteral() != nullptr) {
     auto lit = new NullLiteral();
     lit->value = ctx->start->getText();
     setPos(lit);
-    s.push(lit);
+    nodeStack.push(lit);
   }
   if (ctx->literal()->StringLiteral() != nullptr) {
     auto lit = new StringLiteral();
     lit->value = ctx->start->getText();
     setPos(lit);
-    s.push(lit);
+    nodeStack.push(lit);
   }
   if (ctx->literal()->BooleanLiteral() != nullptr) {
     auto lit = new BooleanLiteral();
     lit->value = ctx->start->getText();
     setPos(lit);
-    s.push(lit);
+    nodeStack.push(lit);
   }
   return 1U;
 }
@@ -234,11 +243,11 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitLiteralExpression(JavaScriptPars
 antlrcpp::Any JavaScriptParserBaseVisitor::visitFunctionDeclaration(JavaScriptParser::FunctionDeclarationContext *ctx) {
   auto size = visitChildren(ctx).as<unsigned int>();
   auto func = new FunctionDeclarationNode();
-  s.popTo(func->body);
-  s.popTo(func->params, size - 1);
+  nodeStack.popTo(func->body);
+  nodeStack.popTo(func->params, size - 1);
   func->id = new IdentifierNode();
   func->id->name = ctx->Identifier()->getText();
-  s.push(func);
+  nodeStack.push(func);
   return 1U;
 }
 antlrcpp::Any JavaScriptParserBaseVisitor::visitFormalParameterArg(JavaScriptParser::FormalParameterArgContext *ctx) {
@@ -248,50 +257,55 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitFormalParameterArg(JavaScriptPar
 antlrcpp::Any JavaScriptParserBaseVisitor::visitFunctionBody(JavaScriptParser::FunctionBodyContext *ctx) {
   auto size = visitChildren(ctx).as<unsigned int>();
   auto body = new FunctionBodyNode();
-  s.popTo(body->statementNodes, size);
-  s.push(body);
+  nodeStack.popTo(body->statementNodes, size);
+  nodeStack.push(body);
   return 1U;
 }
 
 antlrcpp::Any JavaScriptParserBaseVisitor::visitWhileStatement(JavaScriptParser::WhileStatementContext *ctx) {
   auto size = visitChildren(ctx).as<unsigned int>();
   auto while_node = new WhileStatementNode();
-  s.popTo(while_node->body);
-  s.popTo(while_node->cond);
-  //  std::cerr << size << std::endl;
+  nodeStack.popTo(while_node->body);
+  nodeStack.popTo(while_node->cond);
+  nodeStack.push(while_node);
   return 1U;
 }
 antlrcpp::Any JavaScriptParserBaseVisitor::visitIfStatement(JavaScriptParser::IfStatementContext *ctx) {
   auto size = visitChildren(ctx).as<unsigned int>();
   auto ifStatement = new IfStatementNode();
-
+  if (size == 3) {
+    nodeStack.popTo(ifStatement->alter);
+  }
+  nodeStack.popTo(ifStatement->cons);
+  nodeStack.popTo(ifStatement->cond);
+  nodeStack.push(ifStatement);
   return 1U;
 }
 antlrcpp::Any JavaScriptParserBaseVisitor::visitContinueStatement(JavaScriptParser::ContinueStatementContext *ctx) {
   auto size = visitChildren(ctx).as<unsigned int>();
   auto statement = new ContinueStatementNode();
   setPos(statement);
-  s.push(statement);
+  nodeStack.push(statement);
   return 1U;
 }
 antlrcpp::Any JavaScriptParserBaseVisitor::visitBreakStatement(JavaScriptParser::BreakStatementContext *ctx) {
   auto statement = new BreakStatementNode();
   setPos(statement);
-  s.push(statement);
+  nodeStack.push(statement);
   return 1U;
 }
 antlrcpp::Any JavaScriptParserBaseVisitor::visitReturnStatement(JavaScriptParser::ReturnStatementContext *ctx) {
   auto size = visitChildren(ctx).as<unsigned int>();
   auto statement = new ReturnStatementNode();
   if (size > 0) {
-    s.popTo(statement->arg);
+    nodeStack.popTo(statement->arg);
   }
-  s.push(statement);
+  nodeStack.push(statement);
   return 1U;
 }
 AstNode *JavaScriptParserBaseVisitor::getAstRoot() {
   AstNode *root;
-  s.popTo(root);
+  nodeStack.popTo(root);
   return root;
 }
 antlrcpp::Any JavaScriptParserBaseVisitor::visitAssignable(JavaScriptParser::AssignableContext *ctx) {
@@ -299,14 +313,14 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitAssignable(JavaScriptParser::Ass
   auto node = new IdentifierNode();
   node->name = ctx->start->getText();
   setPos(node);
-  s.push(node);
+  nodeStack.push(node);
   return 1U;
 }
 antlrcpp::Any JavaScriptParserBaseVisitor::visitExpressionStatement(JavaScriptParser::ExpressionStatementContext *ctx) {
   auto size = visitChildren(ctx).as<unsigned int>();
   auto exp = new ExpressionStatementNode();
-  s.popTo(exp->expression);
-  s.push(exp);
+  nodeStack.popTo(exp->expression);
+  nodeStack.push(exp);
   return 1U;
 }
 antlrcpp::Any
@@ -315,9 +329,9 @@ JavaScriptParserBaseVisitor::visitAssignmentExpression(JavaScriptParser::Assignm
   auto statement = new AssignmentExpressionNode();
   statement->operation = ctx->Assign()->toString();
   setPos(statement);
-  s.popTo(statement->right);
-  s.popTo(statement->left);
-  s.push(statement);
+  nodeStack.popTo(statement->right);
+  nodeStack.popTo(statement->left);
+  nodeStack.push(statement);
   return 1U;
 }
 antlrcpp::Any
@@ -326,21 +340,121 @@ JavaScriptParserBaseVisitor::visitIdentifierExpression(JavaScriptParser::Identif
   auto node = new IdentifierNode();
   node->name = ctx->start->getText();
   setPos(node);
-  s.push(node);
+  nodeStack.push(node);
   return 1U;
 }
 antlrcpp::Any JavaScriptParserBaseVisitor::visitArgumentsExpression(JavaScriptParser::ArgumentsExpressionContext *ctx) {
   auto size = visitChildren(ctx).as<unsigned int>();
   auto exp = new CallExpressionNode();
-  s.popTo(exp->args, size - 1);
-  s.popTo(exp->callee);
-  s.push(exp);
+  nodeStack.popTo(exp->args, size - 1);
+  nodeStack.popTo(exp->callee);
+  nodeStack.push(exp);
   return 1U;
 }
 antlrcpp::Any JavaScriptParserBaseVisitor::visitExpressionSequence(JavaScriptParser::ExpressionSequenceContext *ctx) {
   auto size = visitChildren(ctx).as<unsigned int>();
+  if (size <= 1) {
+    return size;
+  }
   auto exp = new ExpressionSequenceNode();
-  s.popTo(exp->expressions, size);
-  s.push(exp);
+  nodeStack.popTo(exp->expressions, size);
+  nodeStack.push(exp);
   return 1U;
+}
+antlrcpp::Any
+JavaScriptParserBaseVisitor::visitLogicalAndExpression(JavaScriptParser::LogicalAndExpressionContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto binaryExpression = new BinaryExpressionNode();
+  nodeStack.popTo(binaryExpression->right);
+  nodeStack.popTo(binaryExpression->left);
+  binaryExpression->anOperator = getOperator({ctx->And()});
+  nodeStack.push(binaryExpression);
+  return 1U;
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitPowerExpression(JavaScriptParser::PowerExpressionContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto binaryExpression = new BinaryExpressionNode();
+  nodeStack.popTo(binaryExpression->right);
+  nodeStack.popTo(binaryExpression->left);
+  binaryExpression->anOperator = getOperator({ctx->Power()});
+  nodeStack.push(binaryExpression);
+  return 1U;
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitBitXOrExpression(JavaScriptParser::BitXOrExpressionContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto binaryExpression = new BinaryExpressionNode();
+  nodeStack.popTo(binaryExpression->right);
+  nodeStack.popTo(binaryExpression->left);
+  binaryExpression->anOperator = getOperator({ctx->BitXOr()});
+  nodeStack.push(binaryExpression);
+  return 1U;
+}
+antlrcpp::Any
+JavaScriptParserBaseVisitor::visitMultiplicativeExpression(JavaScriptParser::MultiplicativeExpressionContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto binaryExpression = new BinaryExpressionNode();
+  nodeStack.popTo(binaryExpression->right);
+  nodeStack.popTo(binaryExpression->left);
+  binaryExpression->anOperator = getOperator({ctx->Multiply(), ctx->Divide(), ctx->Modulus()});
+  nodeStack.push(binaryExpression);
+  return 1U;
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitBitShiftExpression(JavaScriptParser::BitShiftExpressionContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto binaryExpression = new BinaryExpressionNode();
+  nodeStack.popTo(binaryExpression->right);
+  nodeStack.popTo(binaryExpression->left);
+  binaryExpression->anOperator = getOperator({ctx->RightShiftLogical(), ctx->RightShiftArithmetic(),
+                                              ctx->LeftShiftArithmetic()});
+  nodeStack.push(binaryExpression);
+  return 1U;
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitAdditiveExpression(JavaScriptParser::AdditiveExpressionContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto binaryExpression = new BinaryExpressionNode();
+  nodeStack.popTo(binaryExpression->right);
+  nodeStack.popTo(binaryExpression->left);
+  binaryExpression->anOperator = getOperator({ctx->Plus(), ctx->Minus()});
+  nodeStack.push(binaryExpression);
+  return 1U;
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitBitNotExpression(JavaScriptParser::BitNotExpressionContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto binaryExpression = new BinaryExpressionNode();
+  nodeStack.popTo(binaryExpression->right);
+  nodeStack.popTo(binaryExpression->left);
+  binaryExpression->anOperator = getOperator({ctx->BitNot()});
+  nodeStack.push(binaryExpression);
+  return 1U;
+}
+
+antlrcpp::Any JavaScriptParserBaseVisitor::visitBitAndExpression(JavaScriptParser::BitAndExpressionContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto binaryExpression = new BinaryExpressionNode();
+  nodeStack.popTo(binaryExpression->right);
+  nodeStack.popTo(binaryExpression->left);
+  binaryExpression->anOperator = getOperator({ctx->BitAnd()});
+  nodeStack.push(binaryExpression);
+  return 1U;
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitBitOrExpression(JavaScriptParser::BitOrExpressionContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto binaryExpression = new BinaryExpressionNode();
+  nodeStack.popTo(binaryExpression->right);
+  nodeStack.popTo(binaryExpression->left);
+  binaryExpression->anOperator = getOperator({ctx->BitOr()});
+  nodeStack.push(binaryExpression);
+  return 1U;
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitLogicalOrExpression(JavaScriptParser::LogicalOrExpressionContext *ctx) {
+  auto size = visitChildren(ctx).as<unsigned int>();
+  auto binaryExpression = new BinaryExpressionNode();
+  nodeStack.popTo(binaryExpression->right);
+  nodeStack.popTo(binaryExpression->left);
+  binaryExpression->anOperator = getOperator({ctx->Or()});
+  nodeStack.push(binaryExpression);
+  return 1U;
+}
+antlrcpp::Any JavaScriptParserBaseVisitor::visitAssignmentOperator(JavaScriptParser::AssignmentOperatorContext *ctx) {
+  return antlrcpp::Any();
 }

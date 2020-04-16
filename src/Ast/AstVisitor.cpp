@@ -5,8 +5,8 @@
 #include "AstVisitor.h"
 #include <iomanip>
 #include "AstNodes.cpp"
-#include "AstNodes.h"
 typedef Constants C;
+
 std::string AstVisitor::getTextTree() {
   return tree.str();
 }
@@ -27,7 +27,7 @@ void AstVisitor::printLine() {
 void AstVisitor::printArgs(const std::vector<std::pair<std::string, std::string>>& args) {
   for (const auto& arg : args) {
     printLine();
-    tree << arg.first << " : " << arg.second << std::endl;
+    tree << arg.first << ": " << arg.second << std::endl;
   }
 }
 
@@ -48,8 +48,8 @@ void AstVisitor::visit(ProgramNode* node) {
 }
 
 void AstVisitor::visit(VarDeclaratorNode* node) {
-  visitNewNode(node->identifierNode);
-  visitNewNode(node->expressionNode);
+  visitNewNode("id", {node->identifierNode});
+  visitNewNode("expression", {node->expressionNode});
 }
 void AstVisitor::visit(IdentifierNode* node) {
   printArgs({{"name", node->name}});
@@ -84,18 +84,13 @@ void AstVisitor::visit(BlockStatementNode* node) {
   }
 }
 void AstVisitor::visit(FunctionDeclarationNode* node) {
-  visitNewNode(node->id);
-  printLine();
-  lastOffset += 4;
-  offset.emplace_back(lastOffset);
-  tree << "+ "
-       << "Params" << std::endl;
+  visitNewNode("id", {node->id});
+  std::vector<AstNode*> nodes;
   for (auto i : node->params) {
-    visitNewNode(i);
+    nodes.emplace_back(i);
   }
-  lastOffset -= 4;
-  offset.pop_back();
-  visitNewNode(node->body);
+  visitNewNode("params", nodes);
+  visitNewNode("body", {node->body});
 }
 void AstVisitor::visit(FunctionBodyNode* node) {
   for (auto i : node->statementNodes) {
@@ -103,11 +98,62 @@ void AstVisitor::visit(FunctionBodyNode* node) {
   }
 }
 void AstVisitor::visit(CallExpressionNode* node) {
-  visitNewNode(node->callee);
+  visitNewNode("callee", {node->callee});
+  std::vector<AstNode*> nodes;
   for (auto i : node->args) {
-    visitNewNode(i);
+    nodes.emplace_back(i);
   }
+  visitNewNode("args", nodes);
 }
 void AstVisitor::visit(ExpressionStatementNode* node) {
   visitNewNode(node->expression);
+}
+void AstVisitor::visit(WhileStatementNode* node) {
+  visitNewNode(node->cond);
+  visitNewNode(node->body);
+}
+void AstVisitor::visit(BreakStatementNode* node) {
+}
+void AstVisitor::visit(ContinueStatementNode* node) {
+}
+void AstVisitor::visit(ReturnStatementNode* node) {
+  visitNewNode("arg", {node->arg});
+}
+void AstVisitor::visit(ExpressionSequenceNode* node) {
+  for (auto i : node->expressions) {
+    visitNewNode(i);
+  }
+}
+void AstVisitor::visit(BinaryExpressionNode* node) {
+  visitNewNode("left", {node->left});
+  printArgs({{"operator", node->anOperator}});
+  visitNewNode("right", {node->right});
+}
+void AstVisitor::visitNewNode(const std::string& fieldName, const std::vector<AstNode*>& nodes) {
+  printLine();
+  tree << fieldName << ": ";
+  lastOffset += 4;
+  offset.push_back(lastOffset);
+  tree << std::endl;
+  for (auto i : nodes) {
+    if (i == nullptr) {
+      continue;
+    }
+    printNodeName(i->type);
+    i->accept(this);
+    lastOffset -= 4;
+    offset.pop_back();
+  }
+
+  offset.pop_back();
+}
+void AstVisitor::visit(IfStatementNode* node) {
+  visitNewNode("condition", {node->cond});
+  visitNewNode("consequence", {node->cons});
+  visitNewNode("alternative", {node->alter});
+}
+void AstVisitor::visit(AssignmentExpressionNode* node) {
+  visitNewNode("left", {node->left});
+  printArgs({{"operator", node->operation}});
+  visitNewNode("right", {node->right});
 }
