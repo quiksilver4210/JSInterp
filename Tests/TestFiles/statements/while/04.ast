@@ -1,0 +1,42 @@
++ Program
+   + WhileStatement
+   |   + ExpressionSequence
+   |   |   + BinaryExpression
+   |   |   |   |left: 
+   |   |   |   |   + Identifier
+   |   |   |   |   |   |name: i
+   |   |   |   |operator: Equals
+   |   |   |   |right: 
+   |   |   |   |   + StringLiteral
+   |   |   |   |   |   |value: "str"
+   |   + BlockStatement
+   |   |   + IfExpression
+   |   |   |   |condition: 
+   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |   |   |name: j
+   |   |   |   |   |   |   |   |   |operator: Plus
+   |   |   |   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |   |   |value: 10
+   |   |   |   |   |   |   |operator: LessThan
+   |   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |value: 1
+   |   |   |   |consequence: 
+   |   |   |   |   + BlockStatement
+   |   |   |   |   |   + ContinueStatement
+   |   |   |   |alternative: 
+   |   |   |   |   + BlockStatement
+   |   |   |   |   |   + BreakStatement
+   |   |   + VarDeclaration
+   |   |   |   |kind: var
+   |   |   |   + VarDeclarator
+   |   |   |   |   |id: 
+   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |name: q
+   |   |   |   |   |expression: 

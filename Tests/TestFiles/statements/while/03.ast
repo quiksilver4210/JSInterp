@@ -1,0 +1,35 @@
++ Program
+   + WhileStatement
+   |   + ExpressionSequence
+   |   |   + BinaryExpression
+   |   |   |   |left: 
+   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |name: i
+   |   |   |   |   |   |operator: Plus
+   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |value: 5
+   |   |   |   |operator: MoreThan
+   |   |   |   |right: 
+   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |value: 10
+   |   |   |   |   |   |operator: Multiply
+   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |name: j
+   |   + BlockStatement
+   |   |   + ExpressionStatement
+   |   |   |   + ExpressionSequence
+   |   |   |   |   + AssignmentExpression
+   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |name: j
+   |   |   |   |   |   |operator: +=
+   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |value: 10
+   |   |   + BreakStatement

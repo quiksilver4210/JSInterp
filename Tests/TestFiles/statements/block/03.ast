@@ -1,0 +1,17 @@
++ Program
+   + BlockStatement
+   |   + ExpressionStatement
+   |   |   + ExpressionSequence
+   |   |   |   + NumericLiteral
+   |   |   |   |   |value: 1
+   |   + BlockStatement
+   |   |   + BlockStatement
+   |   |   |   + ExpressionStatement
+   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |value: 3
+   |   + BlockStatement
+   |   |   + ExpressionStatement
+   |   |   |   + ExpressionSequence
+   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |value: 2

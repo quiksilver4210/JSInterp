@@ -1,0 +1,6 @@
++ Program
+   + WhileStatement
+   |   + ExpressionSequence
+   |   |   + NumericLiteral
+   |   |   |   |value: 1
+   |   + BlockStatement

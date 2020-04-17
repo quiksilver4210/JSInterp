@@ -1,0 +1,30 @@
++ Program
+   + FunctionDeclaration
+   |   |id: 
+   |   |   + Identifier
+   |   |   |   |name: j
+   |   |params: 
+   |   |   + Identifier
+   |   |   |   |name: d
+   |   |   + Identifier
+   |   |   |   |name: e
+   |   |body: 
+   |   |   + FunctionBodyNode
+   |   |   |   + ReturnStatement
+   |   |   |   |   |arg: 
+   |   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |   |name: d
+   |   |   |   |   |   |   |   |operator: Plus
+   |   |   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |   |   |   |   |name: e
+   |   |   |   |   |   |   |   |   |   |   |operator: Minus
+   |   |   |   |   |   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |   |   |   |   |value: 3

@@ -1,0 +1,30 @@
++ Program
+   + IfExpression
+   |   |condition: 
+   |   |   + ExpressionSequence
+   |   |   |   + BinaryExpression
+   |   |   |   |   |left: 
+   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |name: i
+   |   |   |   |   |operator: Equals
+   |   |   |   |   |right: 
+   |   |   |   |   |   + NullLiteral
+   |   |   |   |   |   |   |value: null
+   |   |consequence: 
+   |   |   + BlockStatement
+   |   |   |   + ExpressionStatement
+   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   + CallExpression
+   |   |   |   |   |   |   |callee: 
+   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |name: f
+   |   |   |   |   |   |   |args: 
+   |   |alternative: 
+   |   |   + BlockStatement
+   |   |   |   + ExpressionStatement
+   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   + CallExpression
+   |   |   |   |   |   |   |callee: 
+   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |name: g
+   |   |   |   |   |   |   |args: 

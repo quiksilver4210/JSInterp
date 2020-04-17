@@ -1,0 +1,72 @@
++ Program
+   + IfExpression
+   |   |condition: 
+   |   |   + ExpressionSequence
+   |   |   |   + BinaryExpression
+   |   |   |   |   |left: 
+   |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |name: i
+   |   |   |   |   |   |   |operator: Plus
+   |   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |value: 10
+   |   |   |   |   |operator: MoreThan
+   |   |   |   |   |right: 
+   |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |name: j
+   |   |   |   |   |   |   |operator: Multiply
+   |   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |value: 11
+   |   |consequence: 
+   |   |   + BlockStatement
+   |   |   |   + ExpressionStatement
+   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   + AssignmentExpression
+   |   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |name: i
+   |   |   |   |   |   |   |operator: =
+   |   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |value: 1
+   |   |alternative: 
+   |   |   + IfExpression
+   |   |   |   |condition: 
+   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |name: j
+   |   |   |   |   |   |   |operator: LessThan
+   |   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |value: 10
+   |   |   |   |consequence: 
+   |   |   |   |   + BlockStatement
+   |   |   |   |   |   + ExpressionStatement
+   |   |   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |   |   + AssignmentExpression
+   |   |   |   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |   |   |name: i
+   |   |   |   |   |   |   |   |   |operator: =
+   |   |   |   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |   |   |value: 2
+   |   |   |   |alternative: 
+   |   |   |   |   + BlockStatement
+   |   |   |   |   |   + ExpressionStatement
+   |   |   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |   |   + AssignmentExpression
+   |   |   |   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |   |   |name: i
+   |   |   |   |   |   |   |   |   |operator: =
+   |   |   |   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |   |   |value: 3

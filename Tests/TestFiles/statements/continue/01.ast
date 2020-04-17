@@ -1,0 +1,17 @@
++ Program
+   + WhileStatement
+   |   + ExpressionSequence
+   |   |   + NumericLiteral
+   |   |   |   |value: 1
+   |   + BlockStatement
+   |   |   + IfExpression
+   |   |   |   |condition: 
+   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |value: 1
+   |   |   |   |consequence: 
+   |   |   |   |   + BlockStatement
+   |   |   |   |   |   + ContinueStatement
+   |   |   |   |alternative: 
+   |   |   |   |   + BlockStatement
+   |   |   |   |   |   + ContinueStatement

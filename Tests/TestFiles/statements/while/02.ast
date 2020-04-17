@@ -1,0 +1,16 @@
++ Program
+   + WhileStatement
+   |   + ExpressionSequence
+   |   |   + Identifier
+   |   |   |   |name: i
+   |   + BlockStatement
+   |   |   + VarDeclaration
+   |   |   |   |kind: var
+   |   |   |   + VarDeclarator
+   |   |   |   |   |id: 
+   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |name: j
+   |   |   |   |   |expression: 
+   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |name: i
+   |   |   + ContinueStatement

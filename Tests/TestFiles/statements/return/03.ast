@@ -1,0 +1,23 @@
++ Program
+   + FunctionDeclaration
+   |   |id: 
+   |   |   + Identifier
+   |   |   |   |name: h
+   |   |params: 
+   |   |   + Identifier
+   |   |   |   |name: d
+   |   |   + Identifier
+   |   |   |   |name: e
+   |   |body: 
+   |   |   + FunctionBodyNode
+   |   |   |   + ReturnStatement
+   |   |   |   |   |arg: 
+   |   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   |   |   + BooleanLiteral
+   |   |   |   |   |   |   |   |   |   |value: false
+   |   |   |   |   |   |   |   |operator: Plus
+   |   |   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |   |value: 1

@@ -19,5 +19,7 @@ add_executable(${PROJECT_NAME} src/main.cpp ${GrammarGenerated} src/Ast/AstNodes
 
 target_link_libraries(${PROJECT_NAME} /usr/lib/libantlr4-runtime.a)
 
+add_subdirectory(Tests)
+add_subdirectory(lib/googletest)
 
 

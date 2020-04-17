@@ -1,0 +1,13 @@
++ Program
+   + FunctionDeclaration
+   |   |id: 
+   |   |   + Identifier
+   |   |   |   |name: g
+   |   |params: 
+   |   |body: 
+   |   |   + FunctionBodyNode
+   |   |   |   + ReturnStatement
+   |   |   |   |   |arg: 
+   |   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |value: 1

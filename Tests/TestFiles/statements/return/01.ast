@@ -1,0 +1,10 @@
++ Program
+   + FunctionDeclaration
+   |   |id: 
+   |   |   + Identifier
+   |   |   |   |name: f
+   |   |params: 
+   |   |body: 
+   |   |   + FunctionBodyNode
+   |   |   |   + ReturnStatement
+   |   |   |   |   |arg: 
