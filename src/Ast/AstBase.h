@@ -39,10 +39,13 @@ class LogicalExpressionNode;
 class ConditionalExpressionNode;
 class CallExpressionNode;
 class ExpressionSequenceNode;
+class MemberExpressionNode;
+class PropertyExpressionNode;
 class NullLiteral;
 class StringLiteral;
 class NumericLiteral;
 class BooleanLiteral;
+class EmptyExpressionNode;
 
 enum class NodeType {
   Program,
@@ -52,6 +55,7 @@ enum class NodeType {
   BlockStatement,
   Identifier,
   Expression,
+  EmptyExpression,
   ArrayExpression,
   Function,
   FunctionDeclaration,
@@ -61,6 +65,8 @@ enum class NodeType {
   BinaryExpression,
   AssignmentExpression,
   CallExpression,
+  MemberExpression,
+  PropertyExpression,
   NullLiteral,
   StringLiteral,
   NumericLiteral,
@@ -71,7 +77,8 @@ enum class NodeType {
   ReturnStatement,
   ContinueStatement,
   ExpressionStatement,
-  ExpressionSequence
+  ExpressionSequence,
+  EmptyExpressionNode
 };
 enum class BinaryOperator {
   Plus,
@@ -101,6 +108,21 @@ enum class BinaryOperator {
   Or
 };
 
+enum class AssignmentOperator {
+  Plus,
+  Minus,
+  Multiply,
+  Divide,
+  Modulus,
+  Power,
+  RightShiftArithmetic,
+  LeftShiftArithmetic,
+  RightShiftLogical,
+  BitAnd,
+  BitXOr,
+  BitOr
+};
+
 class Constants {
  public:
   inline static std::map<NodeType, std::string> nodeName = {{NodeType::Program, "Program"},
@@ -128,7 +150,11 @@ class Constants {
                                                             {NodeType::CallExpression, "CallExpression"},
                                                             {NodeType::ExpressionSequence, "ExpressionSequence"},
                                                             {NodeType::BinaryExpression, "BinaryExpression"},
-                                                            {NodeType::UnaryExpression, "UnaryExpression"}};
+                                                            {NodeType::UnaryExpression, "UnaryExpression"},
+                                                            {NodeType::EmptyExpression, "EmptyExpression"},
+                                                            {NodeType::MemberExpression, "MemberExpression"},
+                                                            {NodeType::PropertyExpression, "PropertyExpression"},
+                                                            {NodeType::ArrayExpression, "ArrayExpression"}};
 
   inline static std::map<std::string, BinaryOperator> opType = {{"+", BinaryOperator::Plus},
                                                                 {"-", BinaryOperator::Minus},

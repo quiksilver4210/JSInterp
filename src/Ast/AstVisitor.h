@@ -12,10 +12,11 @@
 #include "AstBase.h"
 
 class AstVisitor {
+  const int step = 4;
   int tabCount = 0;
   int lastOffset = 0;
   void printArgs(const std::vector<std::pair<std::string, std::string>>& args);
-  void printLine(int flag);
+  void printLine(int flag = 0);
   void printNodeName(NodeType type);
   std::stringstream tree;
 
@@ -51,6 +52,10 @@ class AstVisitor {
   void visit(IfStatementNode* node);
   void visit(AssignmentExpressionNode* node);
   void visit(UnaryExpressionNode* node);
+  void visit(MemberExpressionNode* node);
+  void visit(PropertyExpressionNode* node);
+  void visit(ArrayExpressionNode* node);
+  void visit(EmptyExpressionNode* node);
 };
 
 #endif  // JSINTERP_ASTVISITOR_H

@@ -146,20 +146,49 @@ class JavaScriptParserBaseVisitor : public JavaScriptParserVisitor {
     return size;
   }
 
-  antlrcpp::Any visitArrayLiteral(JavaScriptParser::ArrayLiteralContext *ctx) override;
+  antlrcpp::Any visitArrayLiteral(JavaScriptParser::ArrayLiteralContext *ctx) override {
+    auto size = visitChildren(ctx).as<int>();
+    auto arr = new ArrayExpressionNode();
+    auto v = &arr->elements;
+
+    //    v->resize(size);
+    //
+    //    for (size -= 1; size >= 0; --size) {
+    //      nodeStack.popTo((*v)[size]);
+    //    }
+    v->resize(ctx->elementList()->children.size());
+    auto ctxChildren = ctx->elementList()->children;
+    for (int i = ctxChildren.size() - 1; i >= 0; --i) {
+      if (ctxChildren[i]->getText() == ",") {
+        auto empty = new EmptyExpressionNode();
+        (*v)[i] = empty;
+      } else {
+        nodeStack.popTo((*v)[i]);
+      }
+    }
+    nodeStack.push(arr);
+    //    //    std::cerr<<ctx->elementList(
+    //    for (auto i : ctx->elementList()->children) {
+    //            std::cerr<<i->getText()<<std::endl;
+    //    }
+    return 1;
+  }
 
   antlrcpp::Any visitElementList(JavaScriptParser::ElementListContext *ctx) override {
     auto size = visitChildren(ctx).as<int>();
+    //    std::cerr<<"a";
     return size;
   }
 
   antlrcpp::Any visitArrayElement(JavaScriptParser::ArrayElementContext *ctx) override {
     auto size = visitChildren(ctx).as<int>();
+    //    std::cerr<<size;
     return size;
   }
 
   antlrcpp::Any visitObjectLiteral(JavaScriptParser::ObjectLiteralContext *ctx) override {
     auto size = visitChildren(ctx).as<int>();
+    //    std::cerr<<size<<std::endl;
     return size;
   }
 
@@ -276,6 +305,7 @@ class JavaScriptParserBaseVisitor : public JavaScriptParserVisitor {
   }
   antlrcpp::Any visitLiteral(JavaScriptParser::LiteralContext *ctx) override {
     auto size = visitChildren(ctx).as<int>();
+    //    std::cerr<<size<<std::endl;
     return size;
   }
   antlrcpp::Any visitNumericLiteral(JavaScriptParser::NumericLiteralContext *ctx) override {

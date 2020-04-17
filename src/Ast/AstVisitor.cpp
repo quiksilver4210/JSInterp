@@ -7,36 +7,19 @@
 #include "AstNodes.cpp"
 typedef Constants C;
 
-std::string AstVisitor::getTextTree() {
-  return tree.str();
-}
-
-void AstVisitor::printNodeName(NodeType type) {
-  printLine(1);
-  lastOffset += 4;
-  ++tabCount;
-  tree << "+ " << C::nodeName[type] << std::endl;
-}
-
-void AstVisitor::printLine(int flag = 0) {
-  if (tabCount == 0) {
-    return;
+template <typename T>
+std::vector<AstNode*> convertToBase(std::vector<T*>& vec) {
+  std::vector<AstNode*> res;
+  if (vec.empty()) {
+    return res;
   }
-  for (auto i = 0; i < tabCount - 1; ++i) {
-    tree << std::setfill(' ') << std::setw(4) << "|";
+  if (dynamic_cast<AstNode*>(vec[0]) == nullptr) {
+    return res;
   }
-  if (flag) {
-    tree << std::setfill(' ') << std::setw(3) << "";
-  } else {
-    tree << std::setfill(' ') << std::setw(4) << "|";
+  for (auto i : vec) {
+    res.emplace_back(i);
   }
-}
-
-void AstVisitor::printArgs(const std::vector<std::pair<std::string, std::string>>& args) {
-  for (const auto& arg : args) {
-    printLine(0);
-    tree << arg.first << ": " << arg.second << std::endl;
-  }
+  return res;
 }
 
 void AstVisitor::visitNewNode(AstNode* node) {
@@ -45,7 +28,7 @@ void AstVisitor::visitNewNode(AstNode* node) {
   }
   printNodeName(node->type);
   node->accept(this);
-  lastOffset -= 4;
+  lastOffset -= step;
   --tabCount;
 }
 
@@ -93,11 +76,7 @@ void AstVisitor::visit(BlockStatementNode* node) {
 }
 void AstVisitor::visit(FunctionDeclarationNode* node) {
   visitNewNode("id", {node->id});
-  std::vector<AstNode*> nodes;
-  for (auto i : node->params) {
-    nodes.emplace_back(i);
-  }
-  visitNewNode("params", nodes);
+  visitNewNode("params", convertToBase(node->params));
   visitNewNode("body", {node->body});
 }
 void AstVisitor::visit(FunctionBodyNode* node) {
@@ -107,11 +86,7 @@ void AstVisitor::visit(FunctionBodyNode* node) {
 }
 void AstVisitor::visit(CallExpressionNode* node) {
   visitNewNode("callee", {node->callee});
-  std::vector<AstNode*> nodes;
-  for (auto i : node->args) {
-    nodes.emplace_back(i);
-  }
-  visitNewNode("args", nodes);
+  visitNewNode("args", convertToBase(node->args));
 }
 void AstVisitor::visit(ExpressionStatementNode* node) {
   visitNewNode(node->expression);
@@ -134,25 +109,10 @@ void AstVisitor::visit(ExpressionSequenceNode* node) {
 }
 void AstVisitor::visit(BinaryExpressionNode* node) {
   visitNewNode("left", {node->left});
-  printArgs({{"operator", node->anOperator}});
+  printArgs({{"operator", C::opName[node->anOperator]}});
   visitNewNode("right", {node->right});
 }
-void AstVisitor::visitNewNode(const std::string& fieldName, const std::vector<AstNode*>& nodes) {
-  printLine();
-  tree << fieldName << ": " << std::endl;
-  lastOffset += 4;
-  ++tabCount;
-  for (auto i : nodes) {
-    if (i == nullptr) {
-      continue;
-    }
-    printNodeName(i->type);
-    i->accept(this);
-    lastOffset -= 4;
-    --tabCount;
-  }
-  --tabCount;
-}
+
 void AstVisitor::visit(IfStatementNode* node) {
   visitNewNode("condition", {node->cond});
   visitNewNode("consequence", {node->cons});
@@ -164,6 +124,68 @@ void AstVisitor::visit(AssignmentExpressionNode* node) {
   visitNewNode("right", {node->right});
 }
 void AstVisitor::visit(UnaryExpressionNode* node) {
-  printArgs({{"operator", node->anOperator}});
+  printArgs({{"operator", C::opName[node->anOperator]}});
   visitNewNode(node->arg);
+}
+void AstVisitor::visit(MemberExpressionNode* node) {
+  visitNewNode("object", {node->obj});
+  visitNewNode("property", {node->property});
+}
+void AstVisitor::visit(PropertyExpressionNode* node) {
+  visitNewNode("key", {node->key});
+  visitNewNode("value", {node->val});
+}
+void AstVisitor::visit(ArrayExpressionNode* node) {
+  visitNewNode("elements", convertToBase(node->elements));
+}
+void AstVisitor::visit(EmptyExpressionNode* node) {
+}
+
+void AstVisitor::visitNewNode(const std::string& fieldName, const std::vector<AstNode*>& nodes) {
+  printLine();
+  tree << fieldName << ": " << std::endl;
+  lastOffset += step;
+  ++tabCount;
+  for (auto i : nodes) {
+    if (i == nullptr) {
+      continue;
+    }
+    printNodeName(i->type);
+    i->accept(this);
+    lastOffset -= step;
+    --tabCount;
+  }
+  --tabCount;
+}
+
+std::string AstVisitor::getTextTree() {
+  return tree.str();
+}
+
+void AstVisitor::printNodeName(NodeType type) {
+  printLine(1);
+  lastOffset += step;
+  ++tabCount;
+  tree << "+ " << C::nodeName[type] << std::endl;
+}
+
+void AstVisitor::printLine(int flag) {
+  if (tabCount == 0) {
+    return;
+  }
+  for (auto i = 0; i < tabCount - 1; ++i) {
+    tree << std::setfill(' ') << std::setw(step) << "|";
+  }
+  if (flag) {
+    tree << std::setfill(' ') << std::setw(step - 1) << "";
+  } else {
+    tree << std::setfill(' ') << std::setw(step) << "|";
+  }
+}
+
+void AstVisitor::printArgs(const std::vector<std::pair<std::string, std::string>>& args) {
+  for (const auto& arg : args) {
+    printLine(0);
+    tree << arg.first << ": " << arg.second << std::endl;
+  }
 }

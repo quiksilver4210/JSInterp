@@ -1,7 +1,9 @@
 
 #include "JavaScriptParserBaseVisitor.h"
+#include "../Ast/AstBase.h"
 #include "JavaScriptBaseParser.h"
 
+typedef Constants C;
 #define setPos(node) node->setPosition(ctx->start->getStartIndex(), ctx->stop->getStopIndex())
 
 antlrcpp::Any JavaScriptParserBaseVisitor::visitSwitchStatement(JavaScriptParser::SwitchStatementContext *) {
@@ -387,7 +389,7 @@ JavaScriptParserBaseVisitor::visitLogicalAndExpression(JavaScriptParser::Logical
   auto binaryExpression = new BinaryExpressionNode();
   nodeStack.popTo(binaryExpression->right);
   nodeStack.popTo(binaryExpression->left);
-  binaryExpression->anOperator = getOperator({ctx->And()});
+  binaryExpression->anOperator = C::opType[getOperator({ctx->And()})];
   nodeStack.push(binaryExpression);
   return 1;
 }
@@ -396,7 +398,7 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitPowerExpression(JavaScriptParser
   auto binaryExpression = new BinaryExpressionNode();
   nodeStack.popTo(binaryExpression->right);
   nodeStack.popTo(binaryExpression->left);
-  binaryExpression->anOperator = getOperator({ctx->Power()});
+  binaryExpression->anOperator = C::opType[getOperator({ctx->Power()})];
   nodeStack.push(binaryExpression);
   return 1;
 }
@@ -405,7 +407,7 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitBitXOrExpression(JavaScriptParse
   auto binaryExpression = new BinaryExpressionNode();
   nodeStack.popTo(binaryExpression->right);
   nodeStack.popTo(binaryExpression->left);
-  binaryExpression->anOperator = getOperator({ctx->BitXOr()});
+  binaryExpression->anOperator = C::opType[getOperator({ctx->BitXOr()})];
   nodeStack.push(binaryExpression);
   return 1;
 }
@@ -415,7 +417,7 @@ JavaScriptParserBaseVisitor::visitMultiplicativeExpression(JavaScriptParser::Mul
   auto binaryExpression = new BinaryExpressionNode();
   nodeStack.popTo(binaryExpression->right);
   nodeStack.popTo(binaryExpression->left);
-  binaryExpression->anOperator = getOperator({ctx->Multiply(), ctx->Divide(), ctx->Modulus()});
+  binaryExpression->anOperator = C::opType[getOperator({ctx->Multiply(), ctx->Divide(), ctx->Modulus()})];
   nodeStack.push(binaryExpression);
   return 1;
 }
@@ -424,8 +426,8 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitBitShiftExpression(JavaScriptPar
   auto binaryExpression = new BinaryExpressionNode();
   nodeStack.popTo(binaryExpression->right);
   nodeStack.popTo(binaryExpression->left);
-  binaryExpression->anOperator = getOperator({ctx->RightShiftLogical(), ctx->RightShiftArithmetic(),
-                                              ctx->LeftShiftArithmetic()});
+  binaryExpression->anOperator = C::opType[getOperator({ctx->RightShiftLogical(), ctx->RightShiftArithmetic(),
+                                                        ctx->LeftShiftArithmetic()})];
   nodeStack.push(binaryExpression);
   return 1;
 }
@@ -434,7 +436,7 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitAdditiveExpression(JavaScriptPar
   auto binaryExpression = new BinaryExpressionNode();
   nodeStack.popTo(binaryExpression->right);
   nodeStack.popTo(binaryExpression->left);
-  binaryExpression->anOperator = getOperator({ctx->Plus(), ctx->Minus()});
+  binaryExpression->anOperator = C::opType[getOperator({ctx->Plus(), ctx->Minus()})];
   nodeStack.push(binaryExpression);
   return 1;
 }
@@ -443,7 +445,7 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitBitNotExpression(JavaScriptParse
   auto binaryExpression = new BinaryExpressionNode();
   nodeStack.popTo(binaryExpression->right);
   nodeStack.popTo(binaryExpression->left);
-  binaryExpression->anOperator = getOperator({ctx->BitNot()});
+  binaryExpression->anOperator = C::opType[getOperator({ctx->BitNot()})];
   nodeStack.push(binaryExpression);
   return 1;
 }
@@ -453,7 +455,7 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitBitAndExpression(JavaScriptParse
   auto binaryExpression = new BinaryExpressionNode();
   nodeStack.popTo(binaryExpression->right);
   nodeStack.popTo(binaryExpression->left);
-  binaryExpression->anOperator = getOperator({ctx->BitAnd()});
+  binaryExpression->anOperator = C::opType[getOperator({ctx->BitAnd()})];
   nodeStack.push(binaryExpression);
   return 1;
 }
@@ -462,7 +464,7 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitBitOrExpression(JavaScriptParser
   auto binaryExpression = new BinaryExpressionNode();
   nodeStack.popTo(binaryExpression->right);
   nodeStack.popTo(binaryExpression->left);
-  binaryExpression->anOperator = getOperator({ctx->BitOr()});
+  binaryExpression->anOperator = C::opType[getOperator({ctx->BitOr()})];
   nodeStack.push(binaryExpression);
   return 1;
 }
@@ -471,7 +473,7 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitLogicalOrExpression(JavaScriptPa
   auto binaryExpression = new BinaryExpressionNode();
   nodeStack.popTo(binaryExpression->right);
   nodeStack.popTo(binaryExpression->left);
-  binaryExpression->anOperator = getOperator({ctx->Or()});
+  binaryExpression->anOperator = C::opType[getOperator({ctx->Or()})];
   nodeStack.push(binaryExpression);
   return 1;
 }
@@ -498,7 +500,7 @@ antlrcpp::Any
 JavaScriptParserBaseVisitor::visitUnaryMinusExpression(JavaScriptParser::UnaryMinusExpressionContext *ctx) {
   auto size = visitChildren(ctx).as<int>();
   auto exp = new UnaryExpressionNode();
-  exp->anOperator = ctx->Minus()->getText();
+  exp->anOperator = C::opType[ctx->Minus()->getText()];
   nodeStack.popTo(exp->arg);
   nodeStack.push(exp);
   return 1;
@@ -506,7 +508,7 @@ JavaScriptParserBaseVisitor::visitUnaryMinusExpression(JavaScriptParser::UnaryMi
 antlrcpp::Any JavaScriptParserBaseVisitor::visitUnaryPlusExpression(JavaScriptParser::UnaryPlusExpressionContext *ctx) {
   auto size = visitChildren(ctx).as<int>();
   auto exp = new UnaryExpressionNode();
-  exp->anOperator = ctx->Plus()->getText();
+  exp->anOperator = C::opType[ctx->Plus()->getText()];
   nodeStack.popTo(exp->arg);
   nodeStack.push(exp);
   return 1;
@@ -516,42 +518,72 @@ antlrcpp::Any JavaScriptParserBaseVisitor::visitEqualityExpression(JavaScriptPar
   auto binaryExpression = new BinaryExpressionNode();
   nodeStack.popTo(binaryExpression->right);
   nodeStack.popTo(binaryExpression->left);
-  binaryExpression->anOperator = getOperator({ctx->NotEquals(), ctx->Equals_(), ctx->IdentityEquals(),
-                                              ctx->IdentityNotEquals()});
+  binaryExpression->anOperator = C::opType[getOperator({ctx->NotEquals(), ctx->Equals_(), ctx->IdentityEquals(),
+                                                        ctx->IdentityNotEquals()})];
   nodeStack.push(binaryExpression);
   return 1;
 }
 antlrcpp::Any
 JavaScriptParserBaseVisitor::visitRelationalExpression(JavaScriptParser::RelationalExpressionContext *ctx) {
   auto size = visitChildren(ctx).as<int>();
-  return size;
+  auto binaryExpression = new BinaryExpressionNode();
+  nodeStack.popTo(binaryExpression->right);
+  nodeStack.popTo(binaryExpression->left);
+  binaryExpression->anOperator = C::opType[getOperator({ctx->MoreThan(), ctx->LessThan(), ctx->LessThanEquals(),
+                                                        ctx->GreaterThanEquals()})];
+  nodeStack.push(binaryExpression);
+  return 1;
 }
 antlrcpp::Any JavaScriptParserBaseVisitor::visitEmptyStatement(JavaScriptParser::EmptyStatementContext *ctx) {
   auto size = visitChildren(ctx).as<int>();
-  return size;
+  auto exp = new EmptyExpressionNode();
+  nodeStack.push(exp);
+  return 1;
 }
 antlrcpp::Any
 JavaScriptParserBaseVisitor::visitPropertyExpressionAssignment(JavaScriptParser::PropertyExpressionAssignmentContext *ctx) {
   auto size = visitChildren(ctx).as<int>();
-  return size;
+  auto exp = new PropertyExpressionNode();
+  nodeStack.popTo(exp->val);
+  nodeStack.popTo(exp->key);
+  nodeStack.push(exp);
+  return 1;
 }
 antlrcpp::Any JavaScriptParserBaseVisitor::visitFunctionExpression(JavaScriptParser::FunctionExpressionContext *ctx) {
   auto size = visitChildren(ctx).as<int>();
-  return size;
+  auto func = new FunctionDeclarationNode();
+  func->id;
+  nodeStack.popTo(func->body);
+  auto v = &func->params;
+  v->resize(--size);
+  for (size -= 1; size >= 0; --size) {
+    nodeStack.popTo((*v)[size]);
+  }
+  nodeStack.push(func);
+  return 1;
 }
 antlrcpp::Any JavaScriptParserBaseVisitor::visitNotExpression(JavaScriptParser::NotExpressionContext *ctx) {
   auto size = visitChildren(ctx).as<int>();
-  return size;
+  auto exp = new UnaryExpressionNode();
+  exp->anOperator = C::opType[ctx->Not()->getText()];
+  nodeStack.popTo(exp->arg);
+  nodeStack.push(exp);
+  return 1;
 }
 antlrcpp::Any
 JavaScriptParserBaseVisitor::visitMemberIndexExpression(JavaScriptParser::MemberIndexExpressionContext *ctx) {
   auto size = visitChildren(ctx).as<int>();
-  return size;
+  auto exp = new MemberExpressionNode();
+  nodeStack.popTo(exp->property);
+  nodeStack.popTo(exp->obj);
+  nodeStack.push(exp);
+  return 1;
 }
 antlrcpp::Any JavaScriptParserBaseVisitor::visitMemberDotExpression(JavaScriptParser::MemberDotExpressionContext *ctx) {
   auto size = visitChildren(ctx).as<int>();
-  return size;
-}
-antlrcpp::Any JavaScriptParserBaseVisitor::visitArrayLiteral(JavaScriptParser::ArrayLiteralContext *ctx) {
-  return antlrcpp::Any();
+  auto exp = new MemberExpressionNode();
+  nodeStack.popTo(exp->property);
+  nodeStack.popTo(exp->obj);
+  nodeStack.push(exp);
+  return 1;
 }
