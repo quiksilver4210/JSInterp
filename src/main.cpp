@@ -12,12 +12,10 @@ int main(int, const char **) {
   ANTLRFileStream inputFile("../example/test.js");
   JavaScriptLexer lexer(&inputFile);
   CommonTokenStream tokens(&lexer);
-
   tokens.fill();
-
   JavaScriptParser parser(&tokens);
-
   JavaScriptParserBaseVisitor visitor;
+
   auto ctx = parser.program();
   visitor.visitProgram(ctx);
   AstVisitor astVisitor(visitor.getAstRoot());

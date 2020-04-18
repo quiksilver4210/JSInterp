@@ -8,35 +8,30 @@
 #include <map>
 #include <stack>
 #include <vector>
+#include "Constants.h"
+class AstBaseVisitor;
 class AstNode;
 class ProgramNode;
+class StatementNode;
 class BlockStatementNode;
-class StatementNode;
-
-class IdentifierNode;
-class VarDeclarationNode;
-class VarDeclaratorNode;
-class StatementNode;
-
-class ExpressionNode;
-class FunctionDeclarationNode;
-class FunctionBodyNode;
-class ReturnStatementNode;
-
-class ArrayExpressionNode;
-
 class WhileStatementNode;
 class IfStatementNode;
 class BreakStatementNode;
 class ContinueStatementNode;
-
+class ReturnStatementNode;
 class ExpressionStatementNode;
+
+class IdentifierNode;
+class VarDeclarationNode;
+class VarDeclaratorNode;
+
+class ExpressionNode;
+class FunctionDeclarationNode;
+class FunctionBodyNode;
 class FunctionExpressionNode;
 class UnaryExpressionNode;
 class BinaryExpressionNode;
 class AssignmentExpressionNode;
-class LogicalExpressionNode;
-class ConditionalExpressionNode;
 class CallExpressionNode;
 class ExpressionSequenceNode;
 class MemberExpressionNode;
@@ -46,171 +41,8 @@ class StringLiteral;
 class NumericLiteral;
 class BooleanLiteral;
 class EmptyExpressionNode;
-
-enum class NodeType {
-  Program,
-  VarDeclaration,
-  VarDeclarator,
-  Statement,
-  BlockStatement,
-  Identifier,
-  Expression,
-  EmptyExpression,
-  ArrayExpression,
-  Function,
-  FunctionDeclaration,
-  FunctionBody,
-  FunctionExpression,
-  UnaryExpression,
-  BinaryExpression,
-  AssignmentExpression,
-  CallExpression,
-  MemberExpression,
-  PropertyExpression,
-  NullLiteral,
-  StringLiteral,
-  NumericLiteral,
-  BooleanLiteral,
-  WhileStatement,
-  IfStatement,
-  BreakStatement,
-  ReturnStatement,
-  ContinueStatement,
-  ExpressionStatement,
-  ExpressionSequence,
-  EmptyExpressionNode
-};
-enum class BinaryOperator {
-  Plus,
-  Minus,
-  BitNot,
-  Not,
-  Multiply,
-  Divide,
-  Modulus,
-  Power,
-  NullCoalesce,
-  RightShiftArithmetic,
-  LeftShiftArithmetic,
-  RightShiftLogical,
-  LessThan,
-  MoreThan,
-  LessThanEquals,
-  GreaterThanEquals,
-  Equals,
-  NotEquals,
-  IdentityEquals,
-  IdentityNotEquals,
-  BitAnd,
-  BitXOr,
-  BitOr,
-  And,
-  Or
-};
-
-enum class AssignmentOperator {
-  Plus,
-  Minus,
-  Multiply,
-  Divide,
-  Modulus,
-  Power,
-  RightShiftArithmetic,
-  LeftShiftArithmetic,
-  RightShiftLogical,
-  BitAnd,
-  BitXOr,
-  BitOr
-};
-
-class Constants {
- public:
-  inline static std::map<NodeType, std::string> nodeName = {{NodeType::Program, "Program"},
-                                                            {NodeType::VarDeclaration, "VarDeclaration"},
-                                                            {NodeType::VarDeclarator, "VarDeclarator"},
-                                                            {NodeType::Statement, "Statement"},
-                                                            {NodeType::BlockStatement, "BlockStatement"},
-                                                            {NodeType::Identifier, "Identifier"},
-                                                            {NodeType::Expression, "Expression"},
-                                                            {NodeType::NullLiteral, "NullLiteral"},
-                                                            {NodeType::StringLiteral, "StringLiteral"},
-                                                            {NodeType::NumericLiteral, "NumericLiteral"},
-                                                            {NodeType::BooleanLiteral, "BooleanLiteral"},
-                                                            {NodeType::Function, "Function"},
-                                                            {NodeType::FunctionDeclaration, "FunctionDeclaration"},
-                                                            {NodeType::FunctionBody, "FunctionBodyNode"},
-                                                            {NodeType::FunctionExpression, "FunctionExpression"},
-                                                            {NodeType::WhileStatement, "WhileStatement"},
-                                                            {NodeType::IfStatement, "IfExpression"},
-                                                            {NodeType::ReturnStatement, "ReturnStatement"},
-                                                            {NodeType::BreakStatement, "BreakStatement"},
-                                                            {NodeType::ContinueStatement, "ContinueStatement"},
-                                                            {NodeType::ExpressionStatement, "ExpressionStatement"},
-                                                            {NodeType::AssignmentExpression, "AssignmentExpression"},
-                                                            {NodeType::CallExpression, "CallExpression"},
-                                                            {NodeType::ExpressionSequence, "ExpressionSequence"},
-                                                            {NodeType::BinaryExpression, "BinaryExpression"},
-                                                            {NodeType::UnaryExpression, "UnaryExpression"},
-                                                            {NodeType::EmptyExpression, "EmptyExpression"},
-                                                            {NodeType::MemberExpression, "MemberExpression"},
-                                                            {NodeType::PropertyExpression, "PropertyExpression"},
-                                                            {NodeType::ArrayExpression, "ArrayExpression"}};
-
-  inline static std::map<std::string, BinaryOperator> opType = {{"+", BinaryOperator::Plus},
-                                                                {"-", BinaryOperator::Minus},
-                                                                {"~", BinaryOperator::BitNot},
-                                                                {"!", BinaryOperator::Not},
-                                                                {"*", BinaryOperator::Multiply},
-                                                                {"/", BinaryOperator::Divide},
-                                                                {"%", BinaryOperator::Modulus},
-                                                                {"**", BinaryOperator::Power},
-                                                                {">>", BinaryOperator::RightShiftArithmetic},
-                                                                {"<<", BinaryOperator::LeftShiftArithmetic},
-                                                                {">>>", BinaryOperator::RightShiftLogical},
-                                                                {"<", BinaryOperator::LessThan},
-                                                                {">", BinaryOperator::MoreThan},
-                                                                {"<=", BinaryOperator::LessThanEquals},
-                                                                {"=>", BinaryOperator::GreaterThanEquals},
-                                                                {"==", BinaryOperator::Equals},
-                                                                {"!=", BinaryOperator::NotEquals},
-                                                                {"===", BinaryOperator::IdentityEquals},
-                                                                {"!==", BinaryOperator::IdentityNotEquals},
-                                                                {"&", BinaryOperator::BitAnd},
-                                                                {"^", BinaryOperator::BitXOr},
-                                                                {"|", BinaryOperator::BitOr},
-                                                                {"&&", BinaryOperator::And},
-                                                                {"||", BinaryOperator::Or}};
-
-  inline static std::map<BinaryOperator, std::string> opName = {{BinaryOperator::Plus, "Plus"},
-                                                                {BinaryOperator::Minus, "Minus"},
-                                                                {BinaryOperator::BitNot, "BitNot"},
-                                                                {BinaryOperator::Not, "Not"},
-                                                                {BinaryOperator::Multiply, "Multiply"},
-                                                                {BinaryOperator::Divide, "Divide"},
-                                                                {BinaryOperator::Modulus, "Modulus"},
-                                                                {BinaryOperator::Power, "Power"},
-                                                                {BinaryOperator::RightShiftArithmetic,
-                                                                 "RightShiftArithmetic"},
-                                                                {BinaryOperator::LeftShiftArithmetic,
-                                                                 "LeftShiftArithmetic"},
-                                                                {BinaryOperator::RightShiftLogical,
-                                                                 "RightShiftLogical"},
-                                                                {BinaryOperator::LessThan, "LessThan"},
-                                                                {BinaryOperator::MoreThan, "MoreThan"},
-                                                                {BinaryOperator::LessThanEquals, "LessThanEquals"},
-                                                                {BinaryOperator::GreaterThanEquals,
-                                                                 "GreaterThanEquals"},
-                                                                {BinaryOperator::Equals, "Equals"},
-                                                                {BinaryOperator::NotEquals, "NotEquals"},
-                                                                {BinaryOperator::IdentityEquals, "IdentityEquals"},
-                                                                {BinaryOperator::IdentityNotEquals,
-                                                                 "IdentityNotEquals"},
-                                                                {BinaryOperator::BitAnd, "BitAnd"},
-                                                                {BinaryOperator::BitXOr, "BitXOr"},
-                                                                {BinaryOperator::BitOr, "BitOr"},
-                                                                {BinaryOperator::And, "And"},
-                                                                {BinaryOperator::Or, "Or"}};
-};
+class ArrayExpressionNode;
+class ObjectExpressionNode;
 
 class NodeStack {
   std::stack<AstNode*> stack_;
@@ -224,5 +56,52 @@ class NodeStack {
     node = (T*)stack_.top();
     stack_.pop();
   }
+};
+
+struct Position {
+  size_t line = 0;
+  size_t column = 0;
+};
+
+class AstNode {
+ public:
+  NodeType type;
+  Position position;
+  void setPosition(int line, int column) {
+    position.line = line;
+    position.column = column;
+  }
+  virtual void accept(AstBaseVisitor* visitor){};
+};
+
+class AstBaseVisitor {
+ public:
+  virtual void visit(ProgramNode* node) = 0;
+  virtual void visit(BlockStatementNode* node) = 0;
+  virtual void visit(VarDeclarationNode* node) = 0;
+  virtual void visit(VarDeclaratorNode* node) = 0;
+  virtual void visit(IdentifierNode* node) = 0;
+  virtual void visit(NullLiteral* node) = 0;
+  virtual void visit(NumericLiteral* node) = 0;
+  virtual void visit(BooleanLiteral* node) = 0;
+  virtual void visit(StringLiteral* node) = 0;
+  virtual void visit(FunctionDeclarationNode* node) = 0;
+  virtual void visit(FunctionBodyNode* node) = 0;
+  virtual void visit(CallExpressionNode* node) = 0;
+  virtual void visit(ExpressionStatementNode* node) = 0;
+  virtual void visit(WhileStatementNode* node) = 0;
+  virtual void visit(BreakStatementNode* node) = 0;
+  virtual void visit(ContinueStatementNode* node) = 0;
+  virtual void visit(ReturnStatementNode* node) = 0;
+  virtual void visit(ExpressionSequenceNode* node) = 0;
+  virtual void visit(BinaryExpressionNode* node) = 0;
+  virtual void visit(IfStatementNode* node) = 0;
+  virtual void visit(AssignmentExpressionNode* node) = 0;
+  virtual void visit(UnaryExpressionNode* node) = 0;
+  virtual void visit(MemberExpressionNode* node) = 0;
+  virtual void visit(PropertyExpressionNode* node) = 0;
+  virtual void visit(ArrayExpressionNode* node) = 0;
+  virtual void visit(EmptyExpressionNode* node) = 0;
+  virtual void visit(ObjectExpressionNode* node) = 0;
 };
 #endif  // JSINTERP_ASTBASE_H

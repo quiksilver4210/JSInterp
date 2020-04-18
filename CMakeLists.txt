@@ -11,7 +11,7 @@ set(GrammarGenerated
         ${PROJECT_SOURCE_DIR}/generated/JavaScriptBaseLexer.cpp
         ${PROJECT_SOURCE_DIR}/generated/JavaScriptBaseParser.cpp
         src/Ast/AstNodes.cpp
-        src/Ast/AstVisitor.cpp src/Ast/AstVisitor.h src/Ast/AstBase.h)
+        src/Ast/AstVisitor.cpp src/Ast/AstVisitor.h src/Ast/AstBase.h src/Ast/Constants.h)
 
 include_directories(${PROJECT_SOURCE_DIR}/generated)
 
