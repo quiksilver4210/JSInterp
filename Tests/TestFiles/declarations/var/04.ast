@@ -1,0 +1,46 @@
++ Program
+   |pos: [1:0]
+   + VarDeclaration
+   |   |pos: [1:0]
+   |   |kind: var
+   |   + VarDeclarator
+   |   |   |pos: [1:4]
+   |   |   |id: 
+   |   |   |   + Identifier
+   |   |   |   |   |pos: [1:4]
+   |   |   |   |   |name: i
+   |   |   |expression: 
+   |   |   |   + NumericLiteral
+   |   |   |   |   |pos: [1:8]
+   |   |   |   |   |value: 1
+   |   + VarDeclarator
+   |   |   |pos: [1:11]
+   |   |   |id: 
+   |   |   |   + Identifier
+   |   |   |   |   |pos: [1:11]
+   |   |   |   |   |name: j
+   |   |   |expression: 
+   |   |   |   + NumericLiteral
+   |   |   |   |   |pos: [1:15]
+   |   |   |   |   |value: 55
+   + VarDeclaration
+   |   |pos: [3:0]
+   |   |kind: var
+   |   + VarDeclarator
+   |   |   |pos: [3:4]
+   |   |   |id: 
+   |   |   |   + Identifier
+   |   |   |   |   |pos: [3:4]
+   |   |   |   |   |name: i
+   |   |   |expression: 
+   |   |   |   + BinaryExpression
+   |   |   |   |   |pos: [3:8]
+   |   |   |   |   |left: 
+   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |pos: [3:8]
+   |   |   |   |   |   |   |name: j
+   |   |   |   |   |operator: Plus
+   |   |   |   |   |right: 
+   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |pos: [3:10]
+   |   |   |   |   |   |   |name: i

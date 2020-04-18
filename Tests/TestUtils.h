@@ -12,7 +12,7 @@ using namespace std::filesystem;
 
 #define GENERATE 0
 
-std::string TEST_DIR = "../../Tests/TestFiles/";
+static std::string TEST_DIR = "../../Tests/TestFiles/";
 
 class TestUtils {
  public:

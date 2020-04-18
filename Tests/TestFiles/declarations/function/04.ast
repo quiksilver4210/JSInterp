@@ -1,0 +1,85 @@
++ Program
+   |pos: [1:0]
+   + FunctionDeclaration
+   |   |pos: [1:0]
+   |   |id: 
+   |   |   + Identifier
+   |   |   |   |pos: [1:9]
+   |   |   |   |name: f
+   |   |params: 
+   |   |   + Identifier
+   |   |   |   |pos: [1:11]
+   |   |   |   |name: a
+   |   |   + StringLiteral
+   |   |   |   |pos: [1:15]
+   |   |   |   |value: "a"
+   |   |   + Identifier
+   |   |   |   |pos: [1:20]
+   |   |   |   |name: b
+   |   |   + NumericLiteral
+   |   |   |   |pos: [1:24]
+   |   |   |   |value: 1
+   |   |body: 
+   |   |   + FunctionBodyNode
+   |   |   |   |pos: [2:4]
+   |   |   |   + IfExpression
+   |   |   |   |   |pos: [2:4]
+   |   |   |   |   |condition: 
+   |   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |   |pos: [2:8]
+   |   |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |   |pos: [2:8]
+   |   |   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |   |pos: [2:8]
+   |   |   |   |   |   |   |   |   |   |name: a
+   |   |   |   |   |   |   |   |operator: Equals
+   |   |   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   |   |   + StringLiteral
+   |   |   |   |   |   |   |   |   |   |pos: [2:13]
+   |   |   |   |   |   |   |   |   |   |value: "a"
+   |   |   |   |   |consequence: 
+   |   |   |   |   |   + BlockStatement
+   |   |   |   |   |   |   |pos: [2:18]
+   |   |   |   |   |   |   + ReturnStatement
+   |   |   |   |   |   |   |   |pos: [3:8]
+   |   |   |   |   |   |   |   |arg: 
+   |   |   |   |   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |   |   |   |   |pos: [3:15]
+   |   |   |   |   |   |   |   |   |   + BooleanLiteral
+   |   |   |   |   |   |   |   |   |   |   |pos: [3:15]
+   |   |   |   |   |   |   |   |   |   |   |value: true
+   |   |   |   |   |alternative: 
+   |   |   |   |   |   + BlockStatement
+   |   |   |   |   |   |   |pos: [4:11]
+   |   |   |   |   |   |   + VarDeclaration
+   |   |   |   |   |   |   |   |pos: [5:8]
+   |   |   |   |   |   |   |   |kind: var
+   |   |   |   |   |   |   |   + VarDeclarator
+   |   |   |   |   |   |   |   |   |pos: [5:12]
+   |   |   |   |   |   |   |   |   |id: 
+   |   |   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |   |   |pos: [5:12]
+   |   |   |   |   |   |   |   |   |   |   |name: i
+   |   |   |   |   |   |   |   |   |expression: 
+   |   |   |   |   |   |   |   |   |   + BooleanLiteral
+   |   |   |   |   |   |   |   |   |   |   |pos: [5:16]
+   |   |   |   |   |   |   |   |   |   |   |value: false
+   |   |   |   |   |   |   + ReturnStatement
+   |   |   |   |   |   |   |   |pos: [6:8]
+   |   |   |   |   |   |   |   |arg: 
+   |   |   |   |   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |   |   |   |   |pos: [6:15]
+   |   |   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |   |   |pos: [6:15]
+   |   |   |   |   |   |   |   |   |   |   |name: i
+   |   |   |   + FunctionDeclaration
+   |   |   |   |   |pos: [9:4]
+   |   |   |   |   |id: 
+   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |pos: [9:13]
+   |   |   |   |   |   |   |name: g
+   |   |   |   |   |params: 
+   |   |   |   |   |body: 
+   |   |   |   |   |   + FunctionBodyNode
+   |   |   |   |   |   |   |pos: [10:4]

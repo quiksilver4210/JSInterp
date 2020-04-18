@@ -1,0 +1,37 @@
++ Program
+   |pos: [1:0]
+   + FunctionDeclaration
+   |   |pos: [1:0]
+   |   |id: 
+   |   |   + Identifier
+   |   |   |   |pos: [1:9]
+   |   |   |   |name: f
+   |   |params: 
+   |   |   + Identifier
+   |   |   |   |pos: [1:11]
+   |   |   |   |name: a
+   |   |   + NumericLiteral
+   |   |   |   |pos: [1:15]
+   |   |   |   |value: 1
+   |   |   + Identifier
+   |   |   |   |pos: [1:18]
+   |   |   |   |name: b
+   |   |body: 
+   |   |   + FunctionBodyNode
+   |   |   |   |pos: [2:4]
+   |   |   |   + ReturnStatement
+   |   |   |   |   |pos: [2:4]
+   |   |   |   |   |arg: 
+   |   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |   |pos: [2:11]
+   |   |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |   |pos: [2:11]
+   |   |   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |   |pos: [2:11]
+   |   |   |   |   |   |   |   |   |   |name: a
+   |   |   |   |   |   |   |   |operator: Plus
+   |   |   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |   |pos: [2:15]
+   |   |   |   |   |   |   |   |   |   |name: b

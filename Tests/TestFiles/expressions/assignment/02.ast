@@ -1,0 +1,17 @@
++ Program
+   |pos: [1:0]
+   + ExpressionStatement
+   |   |pos: [1:0]
+   |   + ExpressionSequence
+   |   |   |pos: [1:0]
+   |   |   + AssignmentExpression
+   |   |   |   |pos: [1:0]
+   |   |   |   |left: 
+   |   |   |   |   + Identifier
+   |   |   |   |   |   |pos: [1:0]
+   |   |   |   |   |   |name: i
+   |   |   |   |operator: PlusAssign
+   |   |   |   |right: 
+   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |pos: [1:5]
+   |   |   |   |   |   |value: 1

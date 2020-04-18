@@ -1,16 +1,28 @@
 + Program
+   |pos: [1:0]
    + WhileStatement
-   |   + ExpressionSequence
-   |   |   + Identifier
-   |   |   |   |name: i
-   |   + BlockStatement
-   |   |   + VarDeclaration
-   |   |   |   |kind: var
-   |   |   |   + VarDeclarator
-   |   |   |   |   |id: 
-   |   |   |   |   |   + Identifier
-   |   |   |   |   |   |   |name: j
-   |   |   |   |   |expression: 
-   |   |   |   |   |   + Identifier
-   |   |   |   |   |   |   |name: i
-   |   |   + ContinueStatement
+   |   |pos: [1:0]
+   |   |condition: 
+   |   |   + ExpressionSequence
+   |   |   |   |pos: [1:7]
+   |   |   |   + Identifier
+   |   |   |   |   |pos: [1:7]
+   |   |   |   |   |name: i
+   |   |body: 
+   |   |   + BlockStatement
+   |   |   |   |pos: [1:10]
+   |   |   |   + VarDeclaration
+   |   |   |   |   |pos: [2:4]
+   |   |   |   |   |kind: var
+   |   |   |   |   + VarDeclarator
+   |   |   |   |   |   |pos: [2:8]
+   |   |   |   |   |   |id: 
+   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |pos: [2:8]
+   |   |   |   |   |   |   |   |name: j
+   |   |   |   |   |   |expression: 
+   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |pos: [2:12]
+   |   |   |   |   |   |   |   |name: i
+   |   |   |   + ContinueStatement
+   |   |   |   |   |pos: [3:4]

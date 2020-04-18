@@ -1,0 +1,25 @@
++ Program
+   |pos: [1:0]
+   + ExpressionStatement
+   |   |pos: [1:0]
+   |   + ExpressionSequence
+   |   |   |pos: [1:0]
+   |   |   + BinaryExpression
+   |   |   |   |pos: [1:0]
+   |   |   |   |left: 
+   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |pos: [1:0]
+   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |pos: [1:0]
+   |   |   |   |   |   |   |   |name: i
+   |   |   |   |   |   |operator: Multiply
+   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |pos: [1:4]
+   |   |   |   |   |   |   |   |value: 1
+   |   |   |   |operator: Plus
+   |   |   |   |right: 
+   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |pos: [1:7]
+   |   |   |   |   |   |value: 1

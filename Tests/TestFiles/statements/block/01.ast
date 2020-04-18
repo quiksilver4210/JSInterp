@@ -1,2 +1,4 @@
 + Program
+   |pos: [1:0]
    + BlockStatement
+   |   |pos: [1:0]

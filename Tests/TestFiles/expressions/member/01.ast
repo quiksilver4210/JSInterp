@@ -1,0 +1,18 @@
++ Program
+   |pos: [1:0]
+   + ExpressionStatement
+   |   |pos: [1:0]
+   |   + ExpressionSequence
+   |   |   |pos: [1:0]
+   |   |   + MemberExpression
+   |   |   |   |pos: [1:0]
+   |   |   |   |object: 
+   |   |   |   |   + Identifier
+   |   |   |   |   |   |pos: [1:0]
+   |   |   |   |   |   |name: i
+   |   |   |   |property: 
+   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |pos: [1:2]
+   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |pos: [1:2]
+   |   |   |   |   |   |   |value: 1

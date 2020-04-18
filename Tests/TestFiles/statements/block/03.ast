@@ -1,17 +1,31 @@
 + Program
+   |pos: [1:0]
    + BlockStatement
+   |   |pos: [1:0]
    |   + ExpressionStatement
+   |   |   |pos: [2:4]
    |   |   + ExpressionSequence
+   |   |   |   |pos: [2:4]
    |   |   |   + NumericLiteral
+   |   |   |   |   |pos: [2:4]
    |   |   |   |   |value: 1
    |   + BlockStatement
+   |   |   |pos: [3:4]
    |   |   + BlockStatement
+   |   |   |   |pos: [4:8]
    |   |   |   + ExpressionStatement
+   |   |   |   |   |pos: [5:12]
    |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |pos: [5:12]
    |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |pos: [5:12]
    |   |   |   |   |   |   |value: 3
    |   + BlockStatement
+   |   |   |pos: [8:4]
    |   |   + ExpressionStatement
+   |   |   |   |pos: [9:8]
    |   |   |   + ExpressionSequence
+   |   |   |   |   |pos: [9:8]
    |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |pos: [9:8]
    |   |   |   |   |   |value: 2

@@ -1,0 +1,22 @@
++ Program
+   |pos: [1:0]
+   + ExpressionStatement
+   |   |pos: [1:0]
+   |   + ExpressionSequence
+   |   |   |pos: [1:0]
+   |   |   + UnaryExpression
+   |   |   |   |pos: [1:0]
+   |   |   |   |operator: Plus
+   |   |   |   + Identifier
+   |   |   |   |   |pos: [1:1]
+   |   |   |   |   |name: i
+   + ExpressionStatement
+   |   |pos: [2:0]
+   |   + ExpressionSequence
+   |   |   |pos: [2:0]
+   |   |   + UnaryExpression
+   |   |   |   |pos: [2:0]
+   |   |   |   |operator: Not
+   |   |   |   + Identifier
+   |   |   |   |   |pos: [2:1]
+   |   |   |   |   |name: i

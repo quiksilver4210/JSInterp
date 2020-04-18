@@ -1,9 +1,14 @@
 + Program
+   |pos: [1:0]
    + IfExpression
+   |   |pos: [1:0]
    |   |condition: 
    |   |   + ExpressionSequence
+   |   |   |   |pos: [1:4]
    |   |   |   + NumericLiteral
+   |   |   |   |   |pos: [1:4]
    |   |   |   |   |value: 1
    |   |consequence: 
    |   |   + BlockStatement
+   |   |   |   |pos: [1:7]
    |   |alternative: 

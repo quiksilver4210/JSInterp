@@ -1,13 +1,20 @@
 + Program
+   |pos: [1:0]
    + FunctionDeclaration
+   |   |pos: [1:0]
    |   |id: 
    |   |   + Identifier
+   |   |   |   |pos: [1:9]
    |   |   |   |name: g
    |   |params: 
    |   |body: 
    |   |   + FunctionBodyNode
+   |   |   |   |pos: [2:4]
    |   |   |   + ReturnStatement
+   |   |   |   |   |pos: [2:4]
    |   |   |   |   |arg: 
    |   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |   |pos: [2:11]
    |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |pos: [2:11]
    |   |   |   |   |   |   |   |value: 1

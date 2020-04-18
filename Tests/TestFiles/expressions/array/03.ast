@@ -1,0 +1,34 @@
++ Program
+   |pos: [1:0]
+   + ExpressionStatement
+   |   |pos: [1:0]
+   |   + ExpressionSequence
+   |   |   |pos: [1:0]
+   |   |   + AssignmentExpression
+   |   |   |   |pos: [1:0]
+   |   |   |   |left: 
+   |   |   |   |   + Identifier
+   |   |   |   |   |   |pos: [1:0]
+   |   |   |   |   |   |name: i
+   |   |   |   |operator: Assign
+   |   |   |   |right: 
+   |   |   |   |   + ArrayExpression
+   |   |   |   |   |   |pos: [1:2]
+   |   |   |   |   |   |elements: 
+   |   |   |   |   |   |   + Undefined
+   |   |   |   |   |   |   + Undefined
+   |   |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |   |pos: [1:5]
+   |   |   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |   |pos: [1:5]
+   |   |   |   |   |   |   |   |   |   |name: i
+   |   |   |   |   |   |   |   |operator: Plus
+   |   |   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |   |pos: [1:7]
+   |   |   |   |   |   |   |   |   |   |value: 1
+   |   |   |   |   |   |   + Undefined
+   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |pos: [1:9]
+   |   |   |   |   |   |   |   |name: j

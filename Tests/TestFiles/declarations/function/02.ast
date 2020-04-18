@@ -1,0 +1,15 @@
++ Program
+   |pos: [1:0]
+   + FunctionDeclaration
+   |   |pos: [1:0]
+   |   |id: 
+   |   |   + Identifier
+   |   |   |   |pos: [1:9]
+   |   |   |   |name: f
+   |   |params: 
+   |   |   + Identifier
+   |   |   |   |pos: [1:11]
+   |   |   |   |name: a
+   |   |body: 
+   |   |   + FunctionBodyNode
+   |   |   |   |pos: [3:0]

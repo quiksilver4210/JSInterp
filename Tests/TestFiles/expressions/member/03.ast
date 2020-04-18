@@ -1,0 +1,38 @@
++ Program
+   |pos: [1:0]
+   + ExpressionStatement
+   |   |pos: [1:0]
+   |   + ExpressionSequence
+   |   |   |pos: [1:0]
+   |   |   + MemberExpression
+   |   |   |   |pos: [1:0]
+   |   |   |   |object: 
+   |   |   |   |   + Identifier
+   |   |   |   |   |   |pos: [1:0]
+   |   |   |   |   |   |name: a
+   |   |   |   |property: 
+   |   |   |   |   + Identifier
+   |   |   |   |   |   |pos: [1:2]
+   |   |   |   |   |   |name: i
+   + ExpressionStatement
+   |   |pos: [3:0]
+   |   + ExpressionSequence
+   |   |   |pos: [3:0]
+   |   |   + AssignmentExpression
+   |   |   |   |pos: [3:0]
+   |   |   |   |left: 
+   |   |   |   |   + MemberExpression
+   |   |   |   |   |   |pos: [3:0]
+   |   |   |   |   |   |object: 
+   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |pos: [3:0]
+   |   |   |   |   |   |   |   |name: b
+   |   |   |   |   |   |property: 
+   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |pos: [3:2]
+   |   |   |   |   |   |   |   |name: j
+   |   |   |   |operator: Assign
+   |   |   |   |right: 
+   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |pos: [3:6]
+   |   |   |   |   |   |value: 1

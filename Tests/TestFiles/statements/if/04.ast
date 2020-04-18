@@ -1,72 +1,105 @@
 + Program
+   |pos: [1:0]
    + IfExpression
+   |   |pos: [1:0]
    |   |condition: 
    |   |   + ExpressionSequence
+   |   |   |   |pos: [1:4]
    |   |   |   + BinaryExpression
+   |   |   |   |   |pos: [1:4]
    |   |   |   |   |left: 
    |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |pos: [1:4]
    |   |   |   |   |   |   |left: 
    |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |pos: [1:4]
    |   |   |   |   |   |   |   |   |name: i
    |   |   |   |   |   |   |operator: Plus
    |   |   |   |   |   |   |right: 
    |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |pos: [1:8]
    |   |   |   |   |   |   |   |   |value: 10
    |   |   |   |   |operator: MoreThan
    |   |   |   |   |right: 
    |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |pos: [1:13]
    |   |   |   |   |   |   |left: 
    |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |pos: [1:13]
    |   |   |   |   |   |   |   |   |name: j
    |   |   |   |   |   |   |operator: Multiply
    |   |   |   |   |   |   |right: 
    |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |pos: [1:17]
    |   |   |   |   |   |   |   |   |value: 11
    |   |consequence: 
    |   |   + BlockStatement
+   |   |   |   |pos: [1:21]
    |   |   |   + ExpressionStatement
+   |   |   |   |   |pos: [2:4]
    |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |pos: [2:4]
    |   |   |   |   |   + AssignmentExpression
+   |   |   |   |   |   |   |pos: [2:4]
    |   |   |   |   |   |   |left: 
    |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |pos: [2:4]
    |   |   |   |   |   |   |   |   |name: i
-   |   |   |   |   |   |   |operator: =
+   |   |   |   |   |   |   |operator: Assign
    |   |   |   |   |   |   |right: 
    |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |pos: [2:8]
    |   |   |   |   |   |   |   |   |value: 1
    |   |alternative: 
    |   |   + IfExpression
+   |   |   |   |pos: [3:7]
    |   |   |   |condition: 
    |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |pos: [3:11]
    |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |pos: [3:11]
    |   |   |   |   |   |   |left: 
    |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |pos: [3:11]
    |   |   |   |   |   |   |   |   |name: j
    |   |   |   |   |   |   |operator: LessThan
    |   |   |   |   |   |   |right: 
    |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |pos: [3:15]
    |   |   |   |   |   |   |   |   |value: 10
    |   |   |   |consequence: 
    |   |   |   |   + BlockStatement
+   |   |   |   |   |   |pos: [3:19]
    |   |   |   |   |   + ExpressionStatement
+   |   |   |   |   |   |   |pos: [4:4]
    |   |   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |   |   |pos: [4:4]
    |   |   |   |   |   |   |   + AssignmentExpression
+   |   |   |   |   |   |   |   |   |pos: [4:4]
    |   |   |   |   |   |   |   |   |left: 
    |   |   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |   |   |pos: [4:4]
    |   |   |   |   |   |   |   |   |   |   |name: i
-   |   |   |   |   |   |   |   |   |operator: =
+   |   |   |   |   |   |   |   |   |operator: Assign
    |   |   |   |   |   |   |   |   |right: 
    |   |   |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |   |   |pos: [4:8]
    |   |   |   |   |   |   |   |   |   |   |value: 2
    |   |   |   |alternative: 
    |   |   |   |   + BlockStatement
+   |   |   |   |   |   |pos: [5:7]
    |   |   |   |   |   + ExpressionStatement
+   |   |   |   |   |   |   |pos: [6:4]
    |   |   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |   |   |pos: [6:4]
    |   |   |   |   |   |   |   + AssignmentExpression
+   |   |   |   |   |   |   |   |   |pos: [6:4]
    |   |   |   |   |   |   |   |   |left: 
    |   |   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |   |   |pos: [6:4]
    |   |   |   |   |   |   |   |   |   |   |name: i
-   |   |   |   |   |   |   |   |   |operator: =
+   |   |   |   |   |   |   |   |   |operator: Assign
    |   |   |   |   |   |   |   |   |right: 
    |   |   |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |   |   |pos: [6:8]
    |   |   |   |   |   |   |   |   |   |   |value: 3

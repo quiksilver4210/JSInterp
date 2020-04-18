@@ -1,16 +1,29 @@
 + Program
+   |pos: [1:0]
    + WhileStatement
-   |   + ExpressionSequence
-   |   |   + NumericLiteral
-   |   |   |   |value: 1
-   |   + BlockStatement
-   |   |   + IfExpression
-   |   |   |   |condition: 
-   |   |   |   |   + ExpressionSequence
-   |   |   |   |   |   + NumericLiteral
-   |   |   |   |   |   |   |value: 1
-   |   |   |   |consequence: 
-   |   |   |   |   + BlockStatement
-   |   |   |   |   |   + BreakStatement
-   |   |   |   |alternative: 
-   |   |   + BreakStatement
+   |   |pos: [1:0]
+   |   |condition: 
+   |   |   + ExpressionSequence
+   |   |   |   |pos: [1:7]
+   |   |   |   + NumericLiteral
+   |   |   |   |   |pos: [1:7]
+   |   |   |   |   |value: 1
+   |   |body: 
+   |   |   + BlockStatement
+   |   |   |   |pos: [1:10]
+   |   |   |   + IfExpression
+   |   |   |   |   |pos: [2:4]
+   |   |   |   |   |condition: 
+   |   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |   |pos: [2:8]
+   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |pos: [2:8]
+   |   |   |   |   |   |   |   |value: 1
+   |   |   |   |   |consequence: 
+   |   |   |   |   |   + BlockStatement
+   |   |   |   |   |   |   |pos: [2:11]
+   |   |   |   |   |   |   + BreakStatement
+   |   |   |   |   |   |   |   |pos: [3:8]
+   |   |   |   |   |alternative: 
+   |   |   |   + BreakStatement
+   |   |   |   |   |pos: [5:4]

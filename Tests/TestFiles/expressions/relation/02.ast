@@ -1,0 +1,25 @@
++ Program
+   |pos: [1:0]
+   + ExpressionStatement
+   |   |pos: [1:0]
+   |   + ExpressionSequence
+   |   |   |pos: [1:0]
+   |   |   + BinaryExpression
+   |   |   |   |pos: [1:0]
+   |   |   |   |left: 
+   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |pos: [1:0]
+   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |pos: [1:0]
+   |   |   |   |   |   |   |   |name: a
+   |   |   |   |   |   |operator: LessThanEquals
+   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |pos: [1:5]
+   |   |   |   |   |   |   |   |value: 2
+   |   |   |   |operator: Equals
+   |   |   |   |right: 
+   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |pos: [1:10]
+   |   |   |   |   |   |value: 3

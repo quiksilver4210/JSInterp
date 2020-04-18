@@ -1,30 +1,46 @@
 + Program
+   |pos: [1:0]
    + IfExpression
+   |   |pos: [1:0]
    |   |condition: 
    |   |   + ExpressionSequence
+   |   |   |   |pos: [1:4]
    |   |   |   + BinaryExpression
+   |   |   |   |   |pos: [1:4]
    |   |   |   |   |left: 
    |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |pos: [1:4]
    |   |   |   |   |   |   |name: i
    |   |   |   |   |operator: Equals
    |   |   |   |   |right: 
    |   |   |   |   |   + NullLiteral
+   |   |   |   |   |   |   |pos: [1:9]
    |   |   |   |   |   |   |value: null
    |   |consequence: 
    |   |   + BlockStatement
+   |   |   |   |pos: [1:15]
    |   |   |   + ExpressionStatement
+   |   |   |   |   |pos: [2:4]
    |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |pos: [2:4]
    |   |   |   |   |   + CallExpression
+   |   |   |   |   |   |   |pos: [2:4]
    |   |   |   |   |   |   |callee: 
    |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |pos: [2:4]
    |   |   |   |   |   |   |   |   |name: f
    |   |   |   |   |   |   |args: 
    |   |alternative: 
    |   |   + BlockStatement
+   |   |   |   |pos: [3:7]
    |   |   |   + ExpressionStatement
+   |   |   |   |   |pos: [4:4]
    |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |pos: [4:4]
    |   |   |   |   |   + CallExpression
+   |   |   |   |   |   |   |pos: [4:4]
    |   |   |   |   |   |   |callee: 
    |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |pos: [4:4]
    |   |   |   |   |   |   |   |   |name: g
    |   |   |   |   |   |   |args: 

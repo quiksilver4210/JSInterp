@@ -1,6 +1,13 @@
 + Program
+   |pos: [1:0]
    + WhileStatement
-   |   + ExpressionSequence
-   |   |   + NumericLiteral
-   |   |   |   |value: 1
-   |   + BlockStatement
+   |   |pos: [1:0]
+   |   |condition: 
+   |   |   + ExpressionSequence
+   |   |   |   |pos: [1:7]
+   |   |   |   + NumericLiteral
+   |   |   |   |   |pos: [1:7]
+   |   |   |   |   |value: 1
+   |   |body: 
+   |   |   + BlockStatement
+   |   |   |   |pos: [1:10]

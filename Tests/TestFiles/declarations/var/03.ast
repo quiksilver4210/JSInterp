@@ -1,0 +1,22 @@
++ Program
+   |pos: [1:0]
+   + VarDeclaration
+   |   |pos: [1:0]
+   |   |kind: var
+   |   + VarDeclarator
+   |   |   |pos: [1:4]
+   |   |   |id: 
+   |   |   |   + Identifier
+   |   |   |   |   |pos: [1:4]
+   |   |   |   |   |name: i
+   |   |   |expression: 
+   |   |   |   + NumericLiteral
+   |   |   |   |   |pos: [1:8]
+   |   |   |   |   |value: 1
+   |   + VarDeclarator
+   |   |   |pos: [1:10]
+   |   |   |id: 
+   |   |   |   + Identifier
+   |   |   |   |   |pos: [1:10]
+   |   |   |   |   |name: j
+   |   |   |expression: 

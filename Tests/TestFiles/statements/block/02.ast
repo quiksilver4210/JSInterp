@@ -1,6 +1,11 @@
 + Program
+   |pos: [1:0]
    + BlockStatement
+   |   |pos: [1:0]
    |   + ExpressionStatement
+   |   |   |pos: [2:4]
    |   |   + ExpressionSequence
+   |   |   |   |pos: [2:4]
    |   |   |   + Identifier
+   |   |   |   |   |pos: [2:4]
    |   |   |   |   |name: i

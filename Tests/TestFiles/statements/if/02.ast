@@ -1,19 +1,29 @@
 + Program
+   |pos: [1:0]
    + IfExpression
+   |   |pos: [1:0]
    |   |condition: 
    |   |   + ExpressionSequence
+   |   |   |   |pos: [1:4]
    |   |   |   + NumericLiteral
+   |   |   |   |   |pos: [1:4]
    |   |   |   |   |value: 1
    |   |consequence: 
    |   |   + BlockStatement
+   |   |   |   |pos: [1:7]
    |   |   |   + ExpressionStatement
+   |   |   |   |   |pos: [2:4]
    |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |pos: [2:4]
    |   |   |   |   |   + AssignmentExpression
+   |   |   |   |   |   |   |pos: [2:4]
    |   |   |   |   |   |   |left: 
    |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |pos: [2:4]
    |   |   |   |   |   |   |   |   |name: i
-   |   |   |   |   |   |   |operator: =
+   |   |   |   |   |   |   |operator: Assign
    |   |   |   |   |   |   |right: 
    |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |pos: [2:8]
    |   |   |   |   |   |   |   |   |value: 10
    |   |alternative: 

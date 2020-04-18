@@ -1,30 +1,44 @@
 + Program
+   |pos: [1:0]
    + FunctionDeclaration
+   |   |pos: [1:0]
    |   |id: 
    |   |   + Identifier
+   |   |   |   |pos: [1:9]
    |   |   |   |name: j
    |   |params: 
    |   |   + Identifier
+   |   |   |   |pos: [1:11]
    |   |   |   |name: d
    |   |   + Identifier
+   |   |   |   |pos: [1:14]
    |   |   |   |name: e
    |   |body: 
    |   |   + FunctionBodyNode
+   |   |   |   |pos: [2:4]
    |   |   |   + ReturnStatement
+   |   |   |   |   |pos: [2:4]
    |   |   |   |   |arg: 
    |   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |   |pos: [2:11]
    |   |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |   |pos: [2:11]
    |   |   |   |   |   |   |   |left: 
    |   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |   |pos: [2:11]
    |   |   |   |   |   |   |   |   |   |name: d
    |   |   |   |   |   |   |   |operator: Plus
    |   |   |   |   |   |   |   |right: 
    |   |   |   |   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |   |   |   |   |pos: [2:16]
    |   |   |   |   |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |   |   |   |   |pos: [2:16]
    |   |   |   |   |   |   |   |   |   |   |left: 
    |   |   |   |   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |   |   |   |   |pos: [2:16]
    |   |   |   |   |   |   |   |   |   |   |   |   |name: e
    |   |   |   |   |   |   |   |   |   |   |operator: Minus
    |   |   |   |   |   |   |   |   |   |   |right: 
    |   |   |   |   |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |   |   |   |   |pos: [2:20]
    |   |   |   |   |   |   |   |   |   |   |   |   |value: 3

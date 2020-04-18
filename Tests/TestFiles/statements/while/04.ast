@@ -1,42 +1,65 @@
 + Program
+   |pos: [1:0]
    + WhileStatement
-   |   + ExpressionSequence
-   |   |   + BinaryExpression
-   |   |   |   |left: 
-   |   |   |   |   + Identifier
-   |   |   |   |   |   |name: i
-   |   |   |   |operator: Equals
-   |   |   |   |right: 
-   |   |   |   |   + StringLiteral
-   |   |   |   |   |   |value: "str"
-   |   + BlockStatement
-   |   |   + IfExpression
-   |   |   |   |condition: 
-   |   |   |   |   + ExpressionSequence
-   |   |   |   |   |   + BinaryExpression
-   |   |   |   |   |   |   |left: 
-   |   |   |   |   |   |   |   + BinaryExpression
-   |   |   |   |   |   |   |   |   |left: 
-   |   |   |   |   |   |   |   |   |   + Identifier
-   |   |   |   |   |   |   |   |   |   |   |name: j
-   |   |   |   |   |   |   |   |   |operator: Plus
-   |   |   |   |   |   |   |   |   |right: 
-   |   |   |   |   |   |   |   |   |   + NumericLiteral
-   |   |   |   |   |   |   |   |   |   |   |value: 10
-   |   |   |   |   |   |   |operator: LessThan
-   |   |   |   |   |   |   |right: 
-   |   |   |   |   |   |   |   + NumericLiteral
-   |   |   |   |   |   |   |   |   |value: 1
-   |   |   |   |consequence: 
-   |   |   |   |   + BlockStatement
-   |   |   |   |   |   + ContinueStatement
-   |   |   |   |alternative: 
-   |   |   |   |   + BlockStatement
-   |   |   |   |   |   + BreakStatement
-   |   |   + VarDeclaration
-   |   |   |   |kind: var
-   |   |   |   + VarDeclarator
-   |   |   |   |   |id: 
+   |   |pos: [1:0]
+   |   |condition: 
+   |   |   + ExpressionSequence
+   |   |   |   |pos: [1:7]
+   |   |   |   + BinaryExpression
+   |   |   |   |   |pos: [1:7]
+   |   |   |   |   |left: 
    |   |   |   |   |   + Identifier
-   |   |   |   |   |   |   |name: q
-   |   |   |   |   |expression: 
+   |   |   |   |   |   |   |pos: [1:7]
+   |   |   |   |   |   |   |name: i
+   |   |   |   |   |operator: Equals
+   |   |   |   |   |right: 
+   |   |   |   |   |   + StringLiteral
+   |   |   |   |   |   |   |pos: [1:12]
+   |   |   |   |   |   |   |value: "str"
+   |   |body: 
+   |   |   + BlockStatement
+   |   |   |   |pos: [1:19]
+   |   |   |   + IfExpression
+   |   |   |   |   |pos: [2:4]
+   |   |   |   |   |condition: 
+   |   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |   |pos: [2:8]
+   |   |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |   |pos: [2:8]
+   |   |   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |   |   |   |pos: [2:8]
+   |   |   |   |   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |   |   |   |pos: [2:8]
+   |   |   |   |   |   |   |   |   |   |   |   |name: j
+   |   |   |   |   |   |   |   |   |   |operator: Plus
+   |   |   |   |   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |   |   |   |pos: [2:12]
+   |   |   |   |   |   |   |   |   |   |   |   |value: 10
+   |   |   |   |   |   |   |   |operator: LessThan
+   |   |   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |   |pos: [2:17]
+   |   |   |   |   |   |   |   |   |   |value: 1
+   |   |   |   |   |consequence: 
+   |   |   |   |   |   + BlockStatement
+   |   |   |   |   |   |   |pos: [2:20]
+   |   |   |   |   |   |   + ContinueStatement
+   |   |   |   |   |   |   |   |pos: [3:8]
+   |   |   |   |   |alternative: 
+   |   |   |   |   |   + BlockStatement
+   |   |   |   |   |   |   |pos: [4:11]
+   |   |   |   |   |   |   + BreakStatement
+   |   |   |   |   |   |   |   |pos: [5:8]
+   |   |   |   + VarDeclaration
+   |   |   |   |   |pos: [7:4]
+   |   |   |   |   |kind: var
+   |   |   |   |   + VarDeclarator
+   |   |   |   |   |   |pos: [7:8]
+   |   |   |   |   |   |id: 
+   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |pos: [7:8]
+   |   |   |   |   |   |   |   |name: q
+   |   |   |   |   |   |expression: 

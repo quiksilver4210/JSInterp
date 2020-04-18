@@ -1,0 +1,33 @@
++ Program
+   |pos: [1:0]
+   + ExpressionStatement
+   |   |pos: [1:0]
+   |   + ExpressionSequence
+   |   |   |pos: [1:0]
+   |   |   + AssignmentExpression
+   |   |   |   |pos: [1:0]
+   |   |   |   |left: 
+   |   |   |   |   + Identifier
+   |   |   |   |   |   |pos: [1:0]
+   |   |   |   |   |   |name: i
+   |   |   |   |operator: DivideAssign
+   |   |   |   |right: 
+   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |pos: [1:5]
+   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |   |pos: [1:5]
+   |   |   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |   |pos: [1:5]
+   |   |   |   |   |   |   |   |   |   |name: i
+   |   |   |   |   |   |   |   |operator: Multiply
+   |   |   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |   |pos: [1:7]
+   |   |   |   |   |   |   |   |   |   |value: 5
+   |   |   |   |   |   |operator: And
+   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   + BooleanLiteral
+   |   |   |   |   |   |   |   |pos: [1:12]
+   |   |   |   |   |   |   |   |value: true

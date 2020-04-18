@@ -1,0 +1,17 @@
++ Program
+   |pos: [1:0]
+   + ExpressionStatement
+   |   |pos: [1:0]
+   |   + ExpressionSequence
+   |   |   |pos: [1:0]
+   |   |   + BinaryExpression
+   |   |   |   |pos: [1:0]
+   |   |   |   |left: 
+   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |pos: [1:0]
+   |   |   |   |   |   |value: 1
+   |   |   |   |operator: LessThan
+   |   |   |   |right: 
+   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |pos: [1:2]
+   |   |   |   |   |   |value: 2

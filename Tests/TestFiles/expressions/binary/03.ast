@@ -1,0 +1,51 @@
++ Program
+   |pos: [1:0]
+   + ExpressionStatement
+   |   |pos: [1:0]
+   |   + ExpressionSequence
+   |   |   |pos: [1:0]
+   |   |   + AssignmentExpression
+   |   |   |   |pos: [1:0]
+   |   |   |   |left: 
+   |   |   |   |   + Identifier
+   |   |   |   |   |   |pos: [1:0]
+   |   |   |   |   |   |name: i
+   |   |   |   |operator: Assign
+   |   |   |   |right: 
+   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |pos: [1:4]
+   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   + ExpressionSequence
+   |   |   |   |   |   |   |   |pos: [1:5]
+   |   |   |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |   |   |pos: [1:5]
+   |   |   |   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |   |   |pos: [1:5]
+   |   |   |   |   |   |   |   |   |   |   |name: q
+   |   |   |   |   |   |   |   |   |operator: And
+   |   |   |   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |   |   |   |   |pos: [1:10]
+   |   |   |   |   |   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |   |   |   |   |pos: [1:10]
+   |   |   |   |   |   |   |   |   |   |   |   |   |name: a
+   |   |   |   |   |   |   |   |   |   |   |operator: Minus
+   |   |   |   |   |   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   |   |   |   |   |   + BinaryExpression
+   |   |   |   |   |   |   |   |   |   |   |   |   |pos: [1:14]
+   |   |   |   |   |   |   |   |   |   |   |   |   |left: 
+   |   |   |   |   |   |   |   |   |   |   |   |   |   + Identifier
+   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |pos: [1:14]
+   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |name: c
+   |   |   |   |   |   |   |   |   |   |   |   |   |operator: Power
+   |   |   |   |   |   |   |   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   |   |   |   |   |   |   |   + NumericLiteral
+   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |pos: [1:19]
+   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |value: 3
+   |   |   |   |   |   |operator: And
+   |   |   |   |   |   |right: 
+   |   |   |   |   |   |   + BooleanLiteral
+   |   |   |   |   |   |   |   |pos: [1:25]
+   |   |   |   |   |   |   |   |value: true
