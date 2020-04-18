@@ -35,7 +35,8 @@ enum class NodeType {
   ExpressionStatement,
   ExpressionSequence,
   EmptyExpressionNode,
-  ObjectExpresion
+  ObjectExpresion,
+  Undefined
 };
 
 enum class BinaryOperator {
@@ -114,7 +115,8 @@ class Constants {
                                                             {NodeType::MemberExpression, "MemberExpression"},
                                                             {NodeType::PropertyExpression, "PropertyExpression"},
                                                             {NodeType::ArrayExpression, "ArrayExpression"},
-                                                            {NodeType::ObjectExpresion, "ObjectExpression"}};
+                                                            {NodeType::ObjectExpresion, "ObjectExpression"},
+                                                            {NodeType::Undefined, "Undefined"}};
 
   inline static std::map<std::string, BinaryOperator> opType = {{"+", BinaryOperator::Plus},
                                                                 {"-", BinaryOperator::Minus},

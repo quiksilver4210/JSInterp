@@ -58,6 +58,7 @@ class AstVisitor : public AstBaseVisitor {
   void visit(ArrayExpressionNode* node) override;
   void visit(EmptyExpressionNode* node) override;
   void visit(ObjectExpressionNode* node) override;
+  void visit(UndefinedNode* node) override;
 };
 
 #endif  // JSINTERP_ASTVISITOR_H

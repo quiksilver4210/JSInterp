@@ -155,7 +155,13 @@ void AstVisitor::visitNewNode(const std::string& fieldName, const std::vector<As
     if (i == nullptr) {
       continue;
     }
+
     printNodeName(i->type);
+    if (i->type == NodeType::Undefined) {
+      lastOffset_ -= step;
+      --tabCount_;
+      continue;
+    }
     printPosition(i->position);
     i->accept(this);
     lastOffset_ -= step;
@@ -199,4 +205,6 @@ void AstVisitor::printArgs(const std::vector<std::pair<std::string, std::string>
 void AstVisitor::printPosition(Position position) {
   printLine(0);
   astTextTree_ << "pos: [" << position.line << ":" << position.column << "]" << std::endl;
+}
+void AstVisitor::visit(UndefinedNode* node) {
 }

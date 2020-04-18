@@ -43,6 +43,7 @@ class BooleanLiteral;
 class EmptyExpressionNode;
 class ArrayExpressionNode;
 class ObjectExpressionNode;
+class UndefinedNode;
 
 class NodeStack {
   std::stack<AstNode*> stack_;
@@ -103,5 +104,6 @@ class AstBaseVisitor {
   virtual void visit(ArrayExpressionNode* node) = 0;
   virtual void visit(EmptyExpressionNode* node) = 0;
   virtual void visit(ObjectExpressionNode* node) = 0;
+  virtual void visit(UndefinedNode* node) = 0;
 };
 #endif  // JSINTERP_ASTBASE_H

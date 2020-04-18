@@ -327,4 +327,14 @@ class ObjectExpressionNode : public ExpressionNode {
     return visitor->visit(this);
   }
 };
+
+class UndefinedNode : public ExpressionNode {
+ public:
+  UndefinedNode() {
+    type = NodeType ::Undefined;
+  }
+  void accept(AstBaseVisitor* visitor) override {
+    return visitor->visit(this);
+  }
+};
 #endif  // JSINTERP_ASTNODES_CPP
